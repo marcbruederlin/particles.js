@@ -1,0 +1,22 @@
+{
+  "name": "jQuery Particles",
+  "version": "1.0.0",
+  "description": "A lightweight jQuery particle plugin.",
+  "main": "dist/jquery.particles.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maaarc/particles.js"
+  },
+  "author": {
+    "name": "Marc Brüderlin",
+    "email": "hi@bruederlin.digital",
+    "url": "https://bruederlin.digital"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/maaarc/particles.js",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^1.5.3"
+  }
+}
