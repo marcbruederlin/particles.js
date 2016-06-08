@@ -5,15 +5,15 @@
   "main": "dist/jquery.particles.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/maaarc/particles.js"
+    "url": "git+https://github.com/maaarc/particles"
   },
   "author": {
     "name": "Marc Brüderlin",
-    "email": "hi@bruederlin.digital",
-    "url": "https://bruederlin.digital"
+    "email": "hi@marcbruederlin.com",
+    "url": "https://marcbruederlin.com"
   },
   "license": "MIT",
-  "homepage": "https://github.com/maaarc/particles.js",
+  "homepage": "https://github.com/maaarc/particles",
   "devDependencies": {
     "gulp": "^3.9.1",
     "gulp-rename": "^1.2.2",
