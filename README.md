@@ -1,9 +1,11 @@
 # jQuery Particles
 
-A lightweight and easy-to-use jQuery plugin for particle backgrounds.
+A lightweight (~2kb) and easy-to-use jQuery plugin for particle backgrounds.
+
+[Demo](https://www.marcbruederlin.com/particles)
 
 ## Installation
-Download the [latest](https://github.com/maaarc/particles/blob/master/dist/jquery.particles.min.js) version.
+Download the [latest](https://github.com/maaarc/particles/archive/master.zip) version.
 
 ## Usage
 Include jQuery and jQuery Particles in your html file
