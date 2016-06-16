@@ -28,7 +28,10 @@ if(typeof jQuery === 'undefined') {
       speed: 0.5,
       color: '#000000',
       minDist: 140,
-      connectParticles: false
+      connectParticles: false,
+      brownian: 0,
+      vx: 0,
+      vy: 0
     };
     
     this._init();
@@ -85,8 +88,17 @@ if(typeof jQuery === 'undefined') {
       for(var i = 0; i < this.particles.length; i++) {
         var particle = this.particles[i];
         
-        particle.x += particle.vx;
-        particle.y += particle.vy;
+        particle.vx = particle.vx + ((Math.random()*2)-1)*options.brownian;
+        particle.vy = particle.vy + ((Math.random()*2)-1)*options.brownian;
+        
+        particle.x += particle.vx + options.vx;
+        particle.y += particle.vy + options.vy;
+        
+        if(options.brownian != 0){
+          var friction = .99;
+          particle.vy *= friction;
+          particle.vx *= friction;
+        }
         
         if(particle.x + particle.radius > canvas.width) {
           particle.x = particle.radius;
