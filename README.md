@@ -32,7 +32,10 @@ $('#myCanvas').particles({
   speed: 0.5, // Movement speed
   color: '#000000', // Particle color
   connectParticles: true, // Connect nearby particles with lines
-  minDist: 140 // Distance for nearby particles
+  minDist: 140, // Distance for nearby particles
+  brownian:0, // Random wandering motion
+  vy: 0, // Prevailing Y motion
+  vx: 0 // Prevailing X motion
 });
 ```
 
