@@ -1,22 +1,33 @@
 {
-  "name": "jQuery Particles",
-  "version": "1.0.0",
-  "description": "A lightweight jQuery particle plugin.",
-  "main": "dist/jquery.particles.js",
+  "name": "particles.js",
+  "version": "0.1.0",
+  "description": "A lightweight and dependency free javascript particle plugin.",
+  "main": "dist/particles.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/maaarc/particles"
+    "url": "git+https://github.com/marcbruederlin/particles.js"
   },
-  "author": {
-    "name": "Marc Brüderlin",
-    "email": "hi@marcbruederlin.com",
-    "url": "https://marcbruederlin.com"
-  },
+  "author": "Marc Brüderlin <hello@marcbruederlin.com>",
   "license": "MIT",
-  "homepage": "https://github.com/maaarc/particles",
+  "bugs": {
+    "url": "https://github.com/marcbruederlin/particles.js/issues"
+  },
+  "homepage": "https://marcbruederlin.github.io/particles.js/",
+  "keywords": [
+    "animation",
+    "javascript",
+    "particles",
+    "background"
+  ],
   "devDependencies": {
     "gulp": "^3.9.1",
+    "gulp-clean": "^0.3.2",
+    "gulp-jshint": "^2.0.1",
     "gulp-rename": "^1.2.2",
-    "gulp-uglify": "^1.5.3"
+    "gulp-uglify": "^1.5.3",
+    "gulp-watch": "^4.3.8",
+    "jshint": "^2.9.2",
+    "jshint-stylish": "^2.2.0",
+    "yargs": "^4.8.1"
   }
 }

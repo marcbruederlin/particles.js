@@ -2,21 +2,39 @@
   'use strict';
   
   var gulp = require('gulp'),
+      argv = require('yargs').argv,
+      clean = require('gulp-clean'),
+      jshint = require('gulp-jshint'),
       uglify = require('gulp-uglify'),
       rename = require('gulp-rename');
-      
-  gulp.task('build:full', function() {
+  
+  gulp.task('jshint', function() {
+    return gulp.src('./src/*')
+      .pipe(jshint('.jshintrc'))
+      .pipe(jshint.reporter('jshint-stylish'));
+  });
+  
+  gulp.task('build:clean', function() {
+    return gulp.src(['./dist'])
+      .pipe(clean({force: true}));
+  });  
+
+  gulp.task('build:full', ['build:clean'], function() {
     return gulp.src('./src/*')
       .pipe(gulp.dest('./dist/'));
   });
   
-  gulp.task('build:compressed', function() {
+  gulp.task('build:compressed', ['build:full'], function() {
     return gulp.src('./src/*')
-      .pipe(uglify())
-      .pipe(rename('jquery.particles.min.js'))
+      .pipe(uglify({preserveComments: 'license'}))
+      .pipe(rename({suffix: '.min'}))
       .pipe(gulp.dest('./dist/'));
   });
+
+  if(argv.watch) {
+    gulp.watch('./src/*', ['build']);
+  }
   
-  gulp.task('build', ['build:full', 'build:compressed']);
+  gulp.task('build', ['jshint', 'build:clean', 'build:full', 'build:compressed']);
 }());
 
