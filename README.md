@@ -9,9 +9,8 @@ particles.js is a lightweight (~2kb) and dependency-free javascript plugin for p
 ## Installation
 There are several ways to install particles.js:
 - [Download the latest version](https://github.com/marcbruederlin/particles.js/archive/master.zip)
-- Install with npm: `npm install particles.js --save`
-- Install with Bower: `bower install particles.js --save`
-- Use the CDN: `https://npmcdn.com/particles.js@1.0.0/dist/particles.min.js`
+- Install with npm: `npm install particlesjs --save`
+- Use the CDN: `https://npmcdn.com/particlesjs@1.0.0/dist/particles.min.js`
 
 ## Usage
 Include the minified JS in your HTML file.
@@ -70,7 +69,7 @@ To compile the distribution files by yourself, make sure that you have node.js a
 - Run the gulp build task `gulp build` to regenerate the `dist` folder. You can also run `gulp build --watch` to watch for file changes and automatically rebuild the files.
 
 ## Using particles.js?
-If you’re using particles.js in some interesting way or on a cool site, I’d be very grateful if you <a href="mailto:hello@marcbruederlin.com?subject='Hey, I'm using particles.js'">shoot me</a> a link to it.
+If you’re using particles.js in some interesting way or on a cool site, I’d be very grateful if you <a href="mailto:hello@marcbruederlin.com?subject=Hey, I'm using particles.js">shoot me</a> a link to it.
 If you want, you can [buy me a coffee](https://www.paypal.me/marcbruederlin) to keep this project running.
 
 ## License

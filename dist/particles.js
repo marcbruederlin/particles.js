@@ -37,7 +37,7 @@ var Particles = (function(window, document) {
       // Setup an event handler for resize events
       window.addEventListener('resize', this.resize.bind(this), false);
 
-      // Check if a selector is specified
+      // Check if options and a selector are specified
       if(options === undefined || !options.selector) {
         console.warn('particles.js: No selector is specified! Check https://github.com/marcbruederlin/particles.js#options');
         return false;
@@ -177,8 +177,6 @@ var Particles = (function(window, document) {
    * @param {Object} obj - object with additional keys who will extend the source
    *
    * @return {Object} combined object
-   * 
-   * @todo Fix variable names and check if obj is undefined
    */
   function _mergeObjects(source, obj) {
     Object.keys(obj).forEach(function(key) { source[key] = obj[key]; });
