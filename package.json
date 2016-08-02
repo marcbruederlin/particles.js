@@ -1,5 +1,5 @@
 {
-  "name": "particles.js",
+  "name": "particlesjs",
   "version": "1.0.0",
   "description": "A lightweight and dependency-free javascript plugin for particle backgrounds.",
   "main": "dist/particles.js",
@@ -24,7 +24,7 @@
     "gulp-clean": "^0.3.2",
     "gulp-jshint": "^2.0.1",
     "gulp-rename": "^1.2.2",
-    "gulp-uglify": "^1.5.3",
+    "gulp-uglify": "^2.0.0",
     "gulp-watch": "^4.3.8",
     "jshint": "^2.9.2",
     "jshint-stylish": "^2.2.0",
