@@ -1,60 +1,79 @@
-# jQuery Particles
+# particles.js
 
-A lightweight (~2kb) and easy-to-use jQuery plugin for particle backgrounds.
+[![Build Status](https://travis-ci.org/marcbruederlin/particles.js.svg?branch=master)](https://travis-ci.org/marcbruederlin/particles.js) [![dependencies Status](https://david-dm.org/marcbruederlin/particles.js/status.svg)](https://david-dm.org/marcbruederlin/particles.js) [![devDependencies Status](https://david-dm.org/marcbruederlin/particles.js/dev-status.svg)](https://david-dm.org/marcbruederlin/particles.js?type=dev) [![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg?v=103)](https://opensource.org/licenses/mit-license.php)   
 
-[Demo](https://www.marcbruederlin.com/particles)
+particles.js is a lightweight (~2kb) and dependency-free javascript plugin for particle backgrounds.
+
+[Demo](https://marcbruederlin.github.io/particles.js/)
 
 ## Installation
-Download the [latest](https://github.com/maaarc/particles/archive/master.zip) version.
+There are several ways to install particles.js:
+- [Download the latest version](https://github.com/marcbruederlin/particles.js/archive/master.zip)
+- Install with npm: `npm install particles.js --save`
+- Install with Bower: `bower install particles.js --save`
+- Use the CDN: `https://npmcdn.com/particles.js@1.0.0/dist/particles.min.js`
 
 ## Usage
-Include jQuery and jQuery Particles in your html file
+Include the minified JS in your HTML file.
 ```html
-<script src="path/to/jquery.min.js"></script>
-<script src="path/to/jquery.particles.min.js"></script>
+<script src="path/to/particles.min.js"></script>
 ```
 
-Create a canvas element
+Create a canvas element in your body tag.
 ```html
 <canvas id="myCanvas"></canvas>
 ```
 
-Initialize jQuery Particles
-```javascript
-$('#myCanvas').particles({ options });
+Add a few styles to your css.
+```css
+html,
+body {
+  margin: 0;
+}
+
+#myCanvas {
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+```
+
+Initialize the plugin on the `window.onload` event.
+```js
+window.onload = function() {
+  Particles.init({ options });
+};
 ```
 
 ## Options
-```javascript
-$('#myCanvas').particles({
-  maxParticles: 100, // Max amount of particles
-  size: 3, // Amount of size variations
-  speed: 0.5, // Movement speed
-  color: '#000000', // Particle color
-  connectParticles: true, // Connect nearby particles with lines
-  minDist: 140 // Distance for nearby particles
-});
-```
+Option | Default | Description
+------ | ------------- | -----------
+`selector` | - | *Required:* The CSS selector of your canvas element
+`maxParticles` | `100` | *Optional:* Maximum amount of particles
+`sizeVariations` | `3` | *Optional:* Amount of size variations
+`speed` | `0.5` | *Optional:* Movement speed of the particles
+`color` | `#000000` | *Optional:* Color of particles and connecting lines
+`minDistance` | `120` | *Optional:* Distance in `px` for conntecting lines
+`connectParticles` | `false` | *Optional:* `true`/`false` if connecting lines should be drawn
+
+
+## Browser Support
+IE10+ and all modern browsers.
+
+## Build
+To compile the distribution files by yourself, make sure that you have node.js and gulp installed, then:
+- Clone the repository: `https://github.com/marcbruederlin/particles.js.git`
+- Change in the project directory: `cd particles.js`
+- Install the dependencies: `npm install`
+- Run the gulp build task `gulp build` to regenerate the `dist` folder. You can also run `gulp build --watch` to watch for file changes and automatically rebuild the files.
+
+## Using particles.js?
+If you’re using particles.js in some interesting way or on a cool site, I’d be very grateful if you <a href="mailto:hello@marcbruederlin.com?subject='Hey, I'm using particles.js'">shoot me</a> a link to it.
+If you want, you can [buy me a coffee](https://www.paypal.me/marcbruederlin) to keep this project running.
 
 ## License
-The MIT License (MIT)
-
-Copyright (c) 2016 Marc Brüderlin
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
+particles.js is created by [Marc Brüderlin](https://marcbruederlin.com) and released 
+under the [MIT license](https://github.com/marcbruederlin/particles.js/blob/master/LICENSE).
+For any problem or question do not hesitate to open an issue.
