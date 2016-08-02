@@ -22,7 +22,7 @@ var Particles = (function(window, document) {
       maxParticles: 100,
       sizeVariations: 3,
       speed: 0.5,
-      color: '#ffffff',
+      color: '#000000',
       minDistance: 120,
       connectParticles: false
     };
@@ -36,6 +36,12 @@ var Particles = (function(window, document) {
     this.init = function(options) {
       // Setup an event handler for resize events
       window.addEventListener('resize', this.resize.bind(this), false);
+
+      // Check if a selector is specified
+      if(options === undefined || !options.selector) {
+        console.warn('particles.js: No selector is specified! Check https://github.com/marcbruederlin/particles.js#options');
+        return false;
+      }
 
       // Setup the global configuration
       config = _mergeObjects(this.defaults, options);
