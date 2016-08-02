@@ -1,7 +1,7 @@
 {
   "name": "particles.js",
-  "version": "0.1.0",
-  "description": "A lightweight and dependency free javascript particle plugin.",
+  "version": "1.0.0",
+  "description": "A lightweight and dependency-free javascript plugin for particle backgrounds.",
   "main": "dist/particles.js",
   "repository": {
     "type": "git",
