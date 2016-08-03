@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>particles.js – A lightweight and dependency-free javascript plugin for particle backgrounds.</title>
+    <link href='https://fonts.googleapis.com/css?family=Muli' rel='stylesheet' type='text/css'>
+    <style>
+      html {
+        width: 100%;
+        height: 100%;
+      }
+
+      body {
+        font-family: 'Muli', sans-serif;
+        font-size: 13px;
+        padding: 0;
+        margin: 0;
+        background-image: url('./background.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+        color: grey;
+      }
+
+      canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+
+      a {
+        color: #fff;
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      .btn {
+        background-color: #2D77F7;
+        padding: 10px 20px;
+        border-radius: 20px;
+      }
+
+      h1 {
+        color: #fff;
+        margin-bottom: 30px;
+      }
+
+      h2 {
+        margin-bottom: 70px;
+        font-size: 16px;
+        line-height: 1.8;
+        color: #acbbce;
+      }
+
+      .container {
+        position: absolute;
+        width: 480px;
+        height: 181px;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        text-align: center;
+        z-index: 100;
+      }
+
+      .photo-copyright {
+        position: absolute;
+        left: 30px;
+        bottom: 30px;
+        z-index: 100;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>particles.js</h1>
+      <h2>A lightweight (~2kb) and dependency-free javascript plugin for particle backgrounds.</h2>
+
+      <a href="https://github.com/marcbruederlin/particles.js" class="btn">View on GitHub</a>
+    </div>
+
+    <p class="photo-copyright">Photo by <a href="https://unsplash.com/@gabrielgm" target="_blank">Gabriel Garcia Marengo</a></p>
+    <canvas id="myCanvas"></canvas>
+
+    <script src="https://npmcdn.com/particlesjs@1.0.1/dist/particles.min.js"></script>
+    <script>
+      window.onload = function() {
+        Particles.init({
+          selector: '#myCanvas',
+          color: '#ffffff',
+          connectParticles: true,
+          minDistance: 140
+        });
+      };
+    </script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-25750134-3', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+  </body>
+</html>
