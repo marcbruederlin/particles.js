@@ -3,10 +3,12 @@
  * for particle backgrounds.
  * 
  * @author Marc Brüderlin <hello@marcbruederlin.com>
- * @version 1.0.0
+ * @version 1.0.1
  * @license MIT
- * @see https://marcbruederlin.github.io/particles.js/
+ * @see https://github.com/marcbruederlin/particles.js
  */
+
+/* exported Particles */
 var Particles = (function(window, document) {
   'use strict';
   
@@ -38,7 +40,7 @@ var Particles = (function(window, document) {
       window.addEventListener('resize', this.resize.bind(this), false);
 
       // Check if options and a selector are specified
-      if(options === undefined || !options.selector) {
+      if (options === undefined || !options.selector) {
         console.warn('particles.js: No selector is specified! Check https://github.com/marcbruederlin/particles.js#options');
         return false;
       }
@@ -56,7 +58,7 @@ var Particles = (function(window, document) {
       canvas.height = window.innerHeight;
 
       // Fill the storage with the given amount of particle instances
-      for(var i = config.maxParticles; i--;) {
+      for (var i = config.maxParticles; i--;) {
         this.storage.push(new Particle());
       }
 
@@ -78,7 +80,7 @@ var Particles = (function(window, document) {
     this.draw = function() {
       context.clearRect(0, 0, canvas.width, canvas.height);
       
-      for(var i = this.storage.length; i--;) {
+      for (var i = this.storage.length; i--;) {
         var particle = this.storage[i];
         particle.draw();
       }
@@ -90,26 +92,26 @@ var Particles = (function(window, document) {
      * Calculates the position and movement for each particle.
      */
     this.update = function() {
-      for(var i = this.storage.length; i--;) {
+      for (var i = this.storage.length; i--;) {
         var particle = this.storage[i];
         
         particle.x += particle.vx;
         particle.y += particle.vy;
         
-        if(particle.x + particle.radius > canvas.width) {
+        if (particle.x + particle.radius > canvas.width) {
           particle.x = particle.radius;
-        } else if(particle.x - particle.radius < 0) {
+        } else if (particle.x - particle.radius < 0) {
           particle.x = canvas.width - particle.radius;
         }
           
-        if(particle.y + particle.radius > canvas.height) {
+        if (particle.y + particle.radius > canvas.height) {
           particle.y = particle.radius;
-        } else if(particle.y - particle.radius < 0) {
+        } else if (particle.y - particle.radius < 0) {
           particle.y = canvas.height - particle.radius;
         }
         
-        if(config.connectParticles) {
-          for(var j = i + 1; j < this.storage.length; j++) {
+        if (config.connectParticles) {
+          for (var j = i + 1; j < this.storage.length; j++) {
             var particle2 = this.storage[j];
           
             this.distance(particle, particle2);
@@ -128,7 +130,7 @@ var Particles = (function(window, document) {
       n = Math.sqrt(r * r + dy * dy);
       
       // Draw a connective line between this two points if the distance is lesser or equal the minimum distance
-      if(n <= config.minDistance) {
+      if (n <= config.minDistance) {
         context.beginPath();
         context.strokeStyle = 'rgba(' + config.color.r + ', ' + config.color.g + ', ' + config.color.b + ', ' + (1.2 - n / config.minDistance) + ')';
         context.moveTo(p1.x, p1.y);

@@ -44,6 +44,14 @@ Initialize the plugin on the `window.onload` event.
 window.onload = function() {
   Particles.init({ options });
 };
+
+// e.g.
+window.onload = function() {
+  Particles.init({
+    selector: '#myCanvas',
+    color: '#0f9976'
+  });
+};
 ```
 
 ## Options
@@ -59,20 +67,20 @@ Option | Default | Description
 
 
 ## Browser Support
-IE10+ and all modern browsers.
+IE9+ and all modern browsers.
 
 ## Build
 To compile the distribution files by yourself, make sure that you have node.js and gulp installed, then:
 - Clone the repository: `https://github.com/marcbruederlin/particles.js.git`
 - Change in the project directory: `cd particles.js`
 - Install the dependencies: `npm install`
-- Run the gulp build task `gulp build` to regenerate the `dist` folder. You can also run `gulp build --watch` to watch for file changes and automatically rebuild the files.
+- Run the gulp build task `gulp build` to regenerate the `dist` folder. <br/> You can also run `gulp build --watch` to watch for file changes and automatically rebuild the files.
 
 ## Using particles.js?
-If you’re using particles.js in some interesting way or on a cool site, I’d be very grateful if you <a href="mailto:hello@marcbruederlin.com?subject=Hey, I'm using particles.js">shoot me</a> a link to it.
-If you want, you can [buy me a coffee](https://www.paypal.me/marcbruederlin) to keep this project running.
+If you’re using particles.js in some interesting way or on a cool site, I’d be very grateful if you <a href="mailto:hello@marcbruederlin.com?subject=Hey, I'm using particles.js">shoot me</a> a link to it.<br />
+For any problems or questions don't hesitate to open an issue.<br />
+Do you like particles.js? If you want, you can [buy me a coffee](https://www.paypal.me/marcbruederlin).
 
 ## License
 particles.js is created by [Marc Brüderlin](https://marcbruederlin.com) and released 
 under the [MIT license](https://github.com/marcbruederlin/particles.js/blob/master/LICENSE).
-For any problem or question do not hesitate to open an issue.

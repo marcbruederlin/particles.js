@@ -2,7 +2,7 @@
   "name": "particlesjs",
   "version": "1.0.1",
   "description": "A lightweight and dependency-free javascript plugin for particle backgrounds.",
-  "main": "dist/particles.js",
+  "main": "dist/particles.min.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/marcbruederlin/particles.js"
@@ -25,9 +25,9 @@
     "gulp-jshint": "^2.0.1",
     "gulp-rename": "^1.2.2",
     "gulp-uglify": "^2.0.0",
-    "gulp-watch": "^4.3.8",
-    "jshint": "^2.9.2",
-    "jshint-stylish": "^2.2.0",
-    "yargs": "^4.8.1"
+    "gulp-watch": "^4.3.10",
+    "jshint": "^2.9.3",
+    "jshint-stylish": "^2.2.1",
+    "yargs": "^6.0.0"
   }
 }
