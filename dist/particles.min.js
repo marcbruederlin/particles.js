@@ -3,7 +3,7 @@
  * for particle backgrounds.
  * 
  * @author Marc Brüderlin <hello@marcbruederlin.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @license MIT
  * @see https://github.com/marcbruederlin/particles.js
  */
