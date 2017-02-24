@@ -217,3 +217,5 @@ var Particles = (function(window, document) {
    */
   return new Plugin();
 })(window, document);
+
+module.exports = Particles;
