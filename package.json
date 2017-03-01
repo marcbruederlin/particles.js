@@ -1,13 +1,13 @@
 {
   "name": "particlesjs",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A lightweight and dependency-free javascript plugin for particle backgrounds.",
   "main": "dist/particles.min.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/marcbruederlin/particles.js"
   },
-  "author": "Marc Brüderlin <hello@marcbruederlin.com>",
+  "author": "Marc Bruederlin <hello@marcbruederlin.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/marcbruederlin/particles.js/issues"

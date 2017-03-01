@@ -3,7 +3,8 @@
   "browser": true,
   "qunit": true,
   "globals": {
-    "HTMLDocument": false
+    "HTMLDocument": false,
+    "define": false
   },
   "esnext": true,
   "bitwise": true,

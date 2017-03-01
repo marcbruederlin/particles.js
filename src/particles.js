@@ -2,8 +2,8 @@
  * A lightweight and dependency-free javascript plugin
  * for particle backgrounds.
  * 
- * @author Marc Brüderlin <hello@marcbruederlin.com>
- * @version 1.0.2
+ * @author Marc Bruederlin <hello@marcbruederlin.com>
+ * @version 1.0.3
  * @license MIT
  * @see https://github.com/marcbruederlin/particles.js
  */
@@ -218,4 +218,14 @@ var Particles = (function(window, document) {
   return new Plugin();
 })(window, document);
 
-module.exports = Particles;
+(function() {
+  'use strict';
+
+  if (typeof define === 'function' && define.amd) {
+    define('Particles', function () { return Particles; });
+  } else if (typeof module !== 'undefined' && module.exports) {
+    module.exports = Particles;
+  } else {
+    window.Particles = Particles;
+  }
+})();

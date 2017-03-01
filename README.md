@@ -4,6 +4,8 @@
 
 particles.js is a lightweight (~2kb) and dependency-free javascript plugin for particle backgrounds.
 
+[<img src="http://i.giphy.com/siez7IPWqDQSQ.gif"/>](https://marcbruederlin.github.io/particles.js/)
+
 [Demo](https://marcbruederlin.github.io/particles.js/)
 
 ## Installation
@@ -79,7 +81,6 @@ To compile the distribution files by yourself, make sure that you have node.js a
 ## Using particles.js?
 If you’re using particles.js in some interesting way or on a cool site, I’d be very grateful if you <a href="mailto:hello@marcbruederlin.com?subject=Hey, I'm using particles.js">shoot me</a> a link to it.<br />
 For any problems or questions don't hesitate to open an issue.<br />
-Do you like particles.js? If you want, you can [buy me a coffee](https://www.paypal.me/marcbruederlin).
 
 ## License
 particles.js is created by [Marc Brüderlin](https://marcbruederlin.com) and released 
