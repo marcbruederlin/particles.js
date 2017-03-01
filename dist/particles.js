@@ -15,7 +15,7 @@ var Particles = (function(window, document) {
   var Plugin, Particle = {};
 
   /**
-   * Description here…
+   * Represents the plugin.
    * 
    * @constructor
    */
@@ -47,12 +47,11 @@ var Particles = (function(window, document) {
     return Plugin;
   }());
 
-
   /**
-   * Initialize the plugin.
+   * Initializes the plugin with user settings.
    * 
    * @public
-   * @param {Object} settings
+   * @param {object} settings
    */
   Plugin.prototype.init = function(settings) {
     var _ = this;
@@ -65,14 +64,59 @@ var Particles = (function(window, document) {
     _._initializeEvents();
     _._initializeStorage();
     _._registerBreakpoints();
-    _._checkResponsive(true);
+    _._checkResponsive();
 
     _._animate();
   };
 
+  /**
+   * Setup the canvas element.
+   * 
+   * @private
+   */
+  Plugin.prototype._initializeCanvas = function() {
+    var _ = this;
+
+    if(!_.options.selector) {
+      console.warn('particles.js: No selector specified! Check https://github.com/marcbruederlin/particles.js#options');
+      return false;
+    }
+
+    _.element = document.querySelector(_.options.selector);
+    _.context = _.element.getContext('2d');
+
+    _.element.width = window.innerWidth;
+    _.element.height = window.innerHeight;
+  };
 
   /**
-   * Description here…
+   * Register event listeners.
+   * 
+   * @private
+   */
+  Plugin.prototype._initializeEvents = function() {
+    var _ = this;
+
+    window.addEventListener('resize', _._resize.bind(_), false);
+  };
+
+  /**
+   * Initialize the particle storage.
+   * 
+   * @private
+   */
+  Plugin.prototype._initializeStorage = function() {
+    var _ = this;
+
+    _.storage = [];
+
+    for(var i = _.options.maxParticles; i--;) {
+      _.storage.push(new Particle(_.element, _.context, _.options));
+    }
+  };
+
+  /**
+   * Register responsive breakpoints if the user declared some.
    * 
    * @private
    */
@@ -109,57 +153,12 @@ var Particles = (function(window, document) {
     }
   };
 
-
   /**
-   * Description here…
+   * Check if a breakpoint is active and load the breakpoints options.
    * 
    * @private
    */
-  Plugin.prototype._initializeEvents = function() {
-    var _ = this;
-
-    window.addEventListener('resize', _._resize.bind(_), false);
-  };
-
-
-  /**
-   * Description here…
-   * 
-   * @private
-   */
-  Plugin.prototype._initializeCanvas = function() {
-    var _ = this;
-
-    if(!_.options.selector) {
-      console.warn('particles.js: No selector specified! Check https://github.com/marcbruederlin/particles.js#options');
-      return false;
-    }
-
-    _.element = document.querySelector(_.options.selector);
-    _.context = _.element.getContext('2d');
-
-    _.element.width = window.innerWidth;
-    _.element.height = window.innerHeight;
-  };
-
-
-  /**
-   * Description here…
-   * 
-   * @private
-   */
-  Plugin.prototype._initializeStorage = function() {
-    var _ = this;
-
-    _.storage = [];
-
-    for (var i = _.options.maxParticles; i--;) {
-      _.storage.push(new Particle(_.element, _.context, _.options));
-    }
-  };
-
-
-  Plugin.prototype._checkResponsive = function(forceUpdate) {
+  Plugin.prototype._checkResponsive = function() {
     var _ = this,
         breakpoint, targetBreakpoint = false,
         windowWidth = window.innerWidth;
@@ -189,9 +188,8 @@ var Particles = (function(window, document) {
     }
   };
 
-
   /**
-   * Description here…
+   * Rebuild the storage and update the canvas.
    * 
    * @private
    */
@@ -202,9 +200,8 @@ var Particles = (function(window, document) {
     _._update();
   };
 
-
   /**
-   * Description here…
+   * Kick off various things on window resize.
    * 
    * @private
    */
@@ -225,9 +222,8 @@ var Particles = (function(window, document) {
     }
   };
 
-
   /**
-   * Description here…
+   * Animates the plugin particles by calling the draw method.
    * 
    * @private
    */
@@ -238,9 +234,8 @@ var Particles = (function(window, document) {
     window.requestAnimFrame(_._animate.bind(_));
   };
 
-
   /**
-   * Description here…
+   * Draws the plugin particles.
    * 
    * @private
    */
@@ -249,7 +244,7 @@ var Particles = (function(window, document) {
 
     _.context.clearRect(0, 0, _.element.width, _.element.height);
     
-    for (var i = _.storage.length; i--;) {
+    for(var i = _.storage.length; i--;) {
       var particle = _.storage[i];
       particle._draw();
     }
@@ -257,35 +252,34 @@ var Particles = (function(window, document) {
     _._update();
   };
 
-
   /**
-   * Description here…
+   * Updates the particle movements.
    * 
    * @private
    */
   Plugin.prototype._update = function() {
     var _ = this;
 
-    for (var i = _.storage.length; i--;) {
+    for(var i = _.storage.length; i--;) {
       var particle = _.storage[i];
         
       particle.x += particle.vx;
       particle.y += particle.vy;
         
-      if (particle.x + particle.radius > _.element.width) {
+      if(particle.x + particle.radius > _.element.width) {
         particle.x = particle.radius;
-      } else if (particle.x - particle.radius < 0) {
+      } else if(particle.x - particle.radius < 0) {
         particle.x = _.element.width - particle.radius;
       }
           
-      if (particle.y + particle.radius > _.element.height) {
+      if(particle.y + particle.radius > _.element.height) {
         particle.y = particle.radius;
-      } else if (particle.y - particle.radius < 0) {
+      } else if(particle.y - particle.radius < 0) {
         particle.y = _.element.height - particle.radius;
       }
         
-      if (_.options.connectParticles) {
-        for (var j = i + 1; j < _.storage.length; j++) {
+      if(_.options.connectParticles) {
+        for(var j = i + 1; j < _.storage.length; j++) {
           var particle2 = _.storage[j];
         
           _._calculateDistance(particle, particle2);
@@ -294,11 +288,12 @@ var Particles = (function(window, document) {
     }
   };
 
-
   /**
-   * Description here…
+   * Calculates the distance between two particles in pixels.
    * 
    * @private
+   * @param {Particle} p1
+   * @param {Particle} p2
    */
   Plugin.prototype._calculateDistance = function(p1, p2) {
     var _ = this;
@@ -306,7 +301,7 @@ var Particles = (function(window, document) {
     var n, r = p1.x - p2.x, dy = p1.y - p2.y;  
         n = Math.sqrt(r * r + dy * dy);
       
-      if (n <= _.options.minDistance) {
+      if(n <= _.options.minDistance) {
         _.context.beginPath();
         _.context.strokeStyle = 'rgba(' + _.options.color.r + ', ' + _.options.color.g + ', ' + _.options.color.b + ', ' + (1.2 - n / _.options.minDistance) + ')';
         _.context.moveTo(p1.x, p1.y);
@@ -316,11 +311,12 @@ var Particles = (function(window, document) {
       }
   };
 
-
   /**
-   * Description here…
+   * Merges the keys of two objects.
    * 
    * @private
+   * @param {object} source
+   * @param {object} obj
    */
   Plugin.prototype._extend = function(source, obj) {
     Object.keys(obj).forEach(function(key) { source[key] = obj[key]; });
@@ -328,11 +324,12 @@ var Particles = (function(window, document) {
     return source;
   };
 
-
   /**
-   * Description here…
+   * Converts a hex string to a rgb object.
    * 
    * @private
+   * @param {string} hex
+   * @return {object}
    */
   Plugin.prototype._hex2rgb = function(hex) {
     var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
@@ -344,11 +341,14 @@ var Particles = (function(window, document) {
     } : null;
   };
 
-
   /**
-   * Description here…
+   * Represents a single particle.
    * 
    * @constructor
+   * @param {object} element
+   * @param {object} context
+   * @param {object} options
+   * 
    */
   Particle = function(element, context, options) {
     var _ = this;
@@ -366,9 +366,8 @@ var Particles = (function(window, document) {
     _._draw();
   };
 
-
   /**
-   * Description here…
+   * The particles draw function (renders the circle).
    * 
    * @private
    */
@@ -381,6 +380,11 @@ var Particles = (function(window, document) {
     _.context.fill();
   };
 
+  /**
+   * A polyfill for requestAnimFrame.
+   * 
+   * @return {function}
+   */
   window.requestAnimFrame = (function() {
     return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame ||
       function(callback) {
@@ -394,9 +398,9 @@ var Particles = (function(window, document) {
 (function() {
   'use strict';
 
-  if (typeof define === 'function' && define.amd) {
+  if(typeof define === 'function' && define.amd) {
     define('Particles', function () { return Particles; });
-  } else if (typeof module !== 'undefined' && module.exports) {
+  } else if(typeof module !== 'undefined' && module.exports) {
     module.exports = Particles;
   } else {
     window.Particles = Particles;
