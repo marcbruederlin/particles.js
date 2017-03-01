@@ -20,8 +20,6 @@ var Particles = (function(window, document) {
    * @constructor
    */
   Plugin = (function() {
-    var instanceId = 0;
-
     function Plugin() {
       var _ = this;
 
@@ -31,7 +29,7 @@ var Particles = (function(window, document) {
         maxParticles: 100,
         sizeVariations: 3,
         speed: 0.5,
-        color: '#000000',
+        color: _._hex2rgb('#000000'),
         minDistance: 120,
         connectParticles: false
       };
@@ -44,8 +42,6 @@ var Particles = (function(window, document) {
       _.originalSettings = null;
       _.windowWidth = 0;
       _.storage = [];
-
-      _.instanceId = instanceId++;
     }
 
     return Plugin;
@@ -61,6 +57,7 @@ var Particles = (function(window, document) {
   Plugin.prototype.init = function(settings) {
     var _ = this;
 
+    settings.color = _._hex2rgb(settings.color);
     _.options = _._extend(_.defaults, settings);
     _.originalSettings = JSON.parse(JSON.stringify(_.options));
 
@@ -89,6 +86,10 @@ var Particles = (function(window, document) {
         currentBreakpoint = responsiveSettings[breakpoint].breakpoint;
 
         if(responsiveSettings.hasOwnProperty(breakpoint)) {
+          if(responsiveSettings[breakpoint].settings.color) {
+            responsiveSettings[breakpoint].settings.color = _._hex2rgb(responsiveSettings[breakpoint].settings.color);
+          }
+
           while(l >= 0) {
             if(_.breakpoints[l] && _.breakpoints[l] === currentBreakpoint) {
               _.breakpoints.splice(l, 1);
@@ -175,35 +176,14 @@ var Particles = (function(window, document) {
       }
 
       if(targetBreakpoint !== null) {
-        if(_.activeBreakpoint !== null) {
-          if(targetBreakpoint !== _.activeBreakpoint || forceUpdate) {
-            _.activeBreakpoint = targetBreakpoint;
-      
-            if(_.breakpointSettings[targetBreakpoint].disable) {
-              _._disable();
-            } else {
-              _.options = _._extend(_.options, _.breakpointSettings[targetBreakpoint]);
-              _._refresh();
-            }
-          }
-        } else {
-          _.activeBreakpoint = targetBreakpoint;
-          
-          if(_.breakpointSettings[targetBreakpoint].disable) {
-            console.log('Disable plugin');
-            //_.unslick(targetBreakpoint);
-          } else {
-            _.options = _._extend(_.options, _.breakpointSettings[targetBreakpoint]);
-            _._refresh();
-          }
-        }
+        _.activeBreakpoint = targetBreakpoint;
+        _.options = _._extend(_.options, _.breakpointSettings[targetBreakpoint]);
       } else {
         if(_.activeBreakpoint !== null) {
           _.activeBreakpoint = null;
           targetBreakpoint = null;
           
           _.options = _._extend(_.options, _.originalSettings);
-          _._refresh();
         }
       }
     }
@@ -240,6 +220,7 @@ var Particles = (function(window, document) {
       _.windowDelay = window.setTimeout(function() {
         _.windowWidth = window.innerWidth;
         _._checkResponsive();
+        _._refresh();
       }, 50);
     }
   };
@@ -303,7 +284,7 @@ var Particles = (function(window, document) {
         particle.y = _.element.height - particle.radius;
       }
         
-      if (_.options.connect) {
+      if (_.options.connectParticles) {
         for (var j = i + 1; j < _.storage.length; j++) {
           var particle2 = _.storage[j];
         
@@ -394,8 +375,7 @@ var Particles = (function(window, document) {
   Particle.prototype._draw = function() {
     var _ = this;
 
-    //_.context.fillStyle = 'rgb(' + _.options.color.r + ', ' + _.options.color.g  + ', ' + _.options.color.b + ')';
-    _.context.fillStyle = _.options.color;
+    _.context.fillStyle = 'rgb(' + _.options.color.r + ', ' + _.options.color.g  + ', ' + _.options.color.b + ')';
     _.context.beginPath();
     _.context.arc(_.x, this.y, _.radius, 0, Math.PI * 2, false);
     _.context.fill();

@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/marcbruederlin/particles.js.svg?branch=master)](https://travis-ci.org/marcbruederlin/particles.js) [![dependencies Status](https://david-dm.org/marcbruederlin/particles.js/status.svg)](https://david-dm.org/marcbruederlin/particles.js) [![devDependencies Status](https://david-dm.org/marcbruederlin/particles.js/dev-status.svg)](https://david-dm.org/marcbruederlin/particles.js?type=dev) [![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg?v=103)](https://opensource.org/licenses/mit-license.php)   
 
-particles.js is a lightweight (~2kb) and dependency-free javascript plugin for particle backgrounds.
+particles.js is a lightweight and dependency-free javascript plugin for particle backgrounds.
 
 [<img src="http://i.giphy.com/siez7IPWqDQSQ.gif"/>](https://marcbruederlin.github.io/particles.js/)
 
