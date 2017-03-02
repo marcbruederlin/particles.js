@@ -1,6 +1,5 @@
 /*!
- * A lightweight and dependency-free javascript plugin
- * for particle backgrounds.
+ * A lightweight and dependency-free javascript plugin for particle backgrounds.
  * 
  * @author Marc Bruederlin <hello@marcbruederlin.com>
  * @version 2.0.0
