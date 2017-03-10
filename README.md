@@ -2,27 +2,32 @@
 
 [![Build Status](https://travis-ci.org/marcbruederlin/particles.js.svg?branch=master)](https://travis-ci.org/marcbruederlin/particles.js) [![dependencies Status](https://david-dm.org/marcbruederlin/particles.js/status.svg)](https://david-dm.org/marcbruederlin/particles.js) [![devDependencies Status](https://david-dm.org/marcbruederlin/particles.js/dev-status.svg)](https://david-dm.org/marcbruederlin/particles.js?type=dev) [![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg?v=103)](https://opensource.org/licenses/mit-license.php)   
 
-particles.js is a lightweight and dependency-free javascript plugin for particle backgrounds.
+particles.js is a lightweight, dependency-free and responsive javascript plugin for particle backgrounds.
 
-[<img src="http://i.giphy.com/siez7IPWqDQSQ.gif"/>](https://marcbruederlin.github.io/particles.js/)
-
-[Demo](https://marcbruederlin.github.io/particles.js/)
+[<img src="http://i.giphy.com/CPEar2kArhFny.gif"/>](https://marcbruederlin.github.io/particles.js/)
 
 ## Installation
 There are several ways to install particles.js:
 - [Download the latest version](https://github.com/marcbruederlin/particles.js/archive/master.zip)
 - Install with npm: `npm install particlesjs --save`
-- Use the CDN: `https://npmcdn.com/particlesjs@1.0.3/dist/particles.min.js`
+- Use the CDN: `https://npmcdn.com/particlesjs@2.0.0/dist/particles.min.js`
 
 ## Usage
-Include the minified JS in your HTML file.
+Include the minified JS in your HTML (right before the closing body tag).
 ```html
-<script src="path/to/particles.min.js"></script>
+<body>
+  …
+  <script src="path/to/particles.min.js"></script>
+</body>
 ```
 
-Create a canvas element in your body tag.
+Add a canvas element to your markup (it should be the last element)
 ```html
-<canvas id="myCanvas"></canvas>
+<body>
+  …
+  <canvas class="background"></canvas>
+  <script src="path/to/particles.min.js"></script>
+</body>
 ```
 
 Add a few styles to your css.
@@ -30,11 +35,14 @@ Add a few styles to your css.
 html,
 body {
   margin: 0;
+  padding: 0;
 }
 
-#myCanvas {
+.background {
   position: absolute;
   display: block;
+  width: 100%;
+  height: 100%;
   top: 0;
   left: 0;
   z-index: 0;
@@ -44,29 +52,25 @@ body {
 Initialize the plugin on the `window.onload` event.
 ```js
 window.onload = function() {
-  Particles.init({ options });
-};
-
-// e.g.
-window.onload = function() {
   Particles.init({
-    selector: '#myCanvas',
-    color: '#0f9976'
+    selector: '.background'
   });
 };
 ```
 
 ## Options
-Option | Default | Description
------- | ------------- | -----------
-`selector` | - | *Required:* The CSS selector of your canvas element
-`maxParticles` | `100` | *Optional:* Maximum amount of particles
-`sizeVariations` | `3` | *Optional:* Amount of size variations
-`speed` | `0.5` | *Optional:* Movement speed of the particles
-`color` | `#000000` | *Optional:* Color of particles and connecting lines
-`minDistance` | `120` | *Optional:* Distance in `px` for conntecting lines
-`connectParticles` | `false` | *Optional:* `true`/`false` if connecting lines should be drawn
+Option | Type | Default | Description
+------ | ------------- | ------------- | -----------
+`selector` | string | - | *Required:* The CSS selector of your canvas element
+`maxParticles` | integer | `100` | *Optional:* Maximum amount of particles
+`sizeVariations` | integer | `3` | *Optional:* Amount of size variations
+`speed` | integer | `0.5` | *Optional:* Movement speed of the particles
+`color` | string | `#000000` | *Optional:* Color of particles and connecting lines
+`minDistance` | integer | `120` | *Optional:* Distance in `px` for conntecting lines
+`connectParticles` | boolean | `false` | *Optional:* `true`/`false` if connecting lines should be drawn
+`responsive` | array | `null` | *Optional:* Array of objects containing breakpoints and options
 
+Example how to use the [responsive option](https://marcbruederlin.github.io/particles.js/#responsive-option).
 
 ## Browser Support
 IE9+ and all modern browsers.
@@ -85,3 +89,6 @@ For any problems or questions don't hesitate to open an issue.<br />
 ## License
 particles.js is created by [Marc Brüderlin](https://marcbruederlin.com) and released 
 under the [MIT license](https://github.com/marcbruederlin/particles.js/blob/master/LICENSE).
+
+## Version 1.x
+The source code for particles.js 1.x has been moved to the [v1 branch](/marcbruederlin/particles.js/tree/v1).

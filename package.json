@@ -1,7 +1,7 @@
 {
   "name": "particlesjs",
   "version": "2.0.0",
-  "description": "A lightweight and dependency-free javascript plugin for particle backgrounds.",
+  "description": "A lightweight, dependency-free and responsive javascript plugin for particle backgrounds.",
   "main": "dist/particles.min.js",
   "repository": {
     "type": "git",
@@ -17,7 +17,8 @@
     "animation",
     "javascript",
     "particles",
-    "background"
+    "background",
+    "responsive"
   ],
   "devDependencies": {
     "gulp": "^3.9.1",
