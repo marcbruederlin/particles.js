@@ -1,0 +1,478 @@
+/*********************************************************
+  RESET
+*********************************************************/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+article, aside, details, figcaption, figure,
+footer, header, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+
+/*********************************************************
+  MAIN
+*********************************************************/
+
+html, body{
+  height: 100%;
+}
+
+body {
+  font-family: 'Lato', sans-serif;
+  font-size: 16px;
+  color: #fff;
+  line-height: 1.6;
+  background-color: #000;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1 {
+  margin-bottom: 30px;
+  font-size: 50px;
+  font-weight: 300;
+}
+
+h2 {
+  margin-bottom: 62px;
+  font-size: 22px;
+}
+
+h3 {
+  margin: 62px 0;
+  font-size: 18px;
+}
+
+em {
+  font-style: italic;
+}
+
+strong {
+  font-weight: 900;
+}
+
+a {
+  color: #fff;
+  text-decoration: none;
+}
+
+hr {
+  width: 20px;
+  height: 1px;
+  margin: 96px auto 81px;
+  background-color: #2A2F34;
+  border: none;
+}
+
+.container {
+  position: relative;
+  max-width: 379px;
+  margin: 0 auto;
+  padding: 0 15px;
+  text-align: center;
+}
+
+.container.container--large {
+  max-width: 525px;
+}
+
+.container.container--large p {
+  max-width: 377px;
+  margin: 0 auto;
+  text-align: center;
+  line-height: 1.9;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+ 
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+ 
+::-webkit-scrollbar-thumb {
+  background-color: #2A2F34;
+  border-radius: 5px;
+}
+
+
+/*********************************************************
+  BUTTONS
+*********************************************************/
+
+.button {
+  display: inline-block;
+  padding: 15px 28px 13px 28px;
+  color: #fff;
+  background-color: #2A2F34;
+  border-radius: 5px;
+  text-align: left;
+  transition: background-color 200ms linear;
+}
+
+.button .button__icon {
+  float: left;
+  width: 33px;
+  height: 33px;
+  margin-right: 15px;
+}
+
+.button .button__text {
+  float: left;
+  position: relative;
+  top: 1px;
+}
+
+.button .button__action {
+  display: block;
+  margin-bottom: -4px;
+  font-weight: 900;
+  font-size: 9px;
+  letter-spacing: 0.57px;
+  text-transform: uppercase;
+}
+
+.button .button__kind {
+  display: block;
+  font-weight: 900;
+  font-size: 15px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+.button.button--primary {
+  background-color: #2A8DF4;
+}
+
+.button.button--secondary {
+  background-color: #587798;
+}
+
+.button:hover {
+  background-color: #212529;
+}
+
+.button.button--primary:hover {
+  background-color: #2682E1;
+}
+
+.button.button--secondary:hover {
+  background-color: #516E8C;
+}
+
+.button.button--download .button__icon {
+  background: url('../img/download.svg') no-repeat transparent;
+}
+
+.button.button--github .button__icon {
+  background: url('../img/github.svg') no-repeat transparent;
+}
+
+.button.button--large {
+  padding: 30px 50px;
+}
+
+
+/*********************************************************
+  TABLE
+*********************************************************/
+
+table {
+  text-align: left;
+}
+
+table th {
+  font-weight: 900;
+  padding-bottom: 10px;
+}
+
+table th:nth-child(3),
+table td:nth-child(3) {
+  text-align: center;
+}
+
+table th:nth-child(4) {
+  width: 40%;
+}
+
+table td {
+  padding: 10px 10px 20px 0;
+  border-top: 1px solid #2A2F34;
+}
+
+
+/*********************************************************
+  HEADER
+*********************************************************/
+
+.header {
+  height: 100%;
+  background: url('../img/background.jpg') bottom no-repeat transparent;
+  background-size: cover;
+}
+
+.header .header__meta {
+  position: absolute;
+  top: 40px;
+  right: 66px;
+  font-size: 14px;
+  z-index: 10;
+}
+
+.header .header__meta li {
+  display: inline-block;
+}
+
+.header .header__meta li:after {
+  display: inline-block;
+  content: "";
+  width: 1px;
+  height: 10px;
+  margin: 0 13px 0 17px;
+  background-color: #fff;
+  opacity: 0.46;
+}
+
+.header .header__meta li:last-of-type:after {
+  display: none;
+  visibility: hidden;
+}
+
+.header .header__meta strong {
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.header .container {
+  z-index: 10;
+}
+
+.header .header__introduction {
+  padding-top: 60%;
+}
+
+.header .header__introduction p {
+  opacity: 0.9;
+}
+
+.header .header__introduction .buttons {
+  margin-top: 61px;
+}
+
+.header .header__introduction .buttons .button:first-of-type {
+  margin-right: 42px;
+}
+
+.header .header__scroll {
+  position: absolute;
+  width: 110px;
+  right: 0;
+  left: 0;
+  bottom: 29px;
+  margin: auto;
+  text-align: center;
+  z-index: 10;
+}
+
+.header .header__background {
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+
+
+/*********************************************************
+  SCROLL
+*********************************************************/
+
+.scroll__text {
+  opacity: 0.9;
+}
+
+
+/*********************************************************
+  DOCUMENTATION
+*********************************************************/
+
+.documentation {
+  padding-top: 108px;
+}
+
+.documentation a:not(.button),
+.footer a:not(.button) {
+  color: #539EEC;
+  border-bottom: 1px dotted transparent;
+  transition: border 200ms linear;
+}
+
+.documentation a:hover {
+  border-bottom-color: #539EEC;
+}
+
+
+/*********************************************************
+  EDITOR
+*********************************************************/
+
+.editor {
+  width: 100%;
+  margin: 33px 0 34px 0;
+  background-color: #2A2F34;
+  border-radius: 5px;
+  text-align: left;
+}
+
+.editor .editor__toolbar {
+  padding: 6px 15px;
+}
+
+.editor .editor__toolbar .button {
+  display: inline-block; 
+  width: 10px;
+  height: 10px;
+  margin-right: 2px;
+  padding: 0;
+  border-radius: 100%;
+}
+
+.editor .editor__toolbar .button:nth-child(1) {
+  background-color: #ED7268;
+}
+
+.editor .editor__toolbar .button:nth-child(2) {
+  background-color: #F9E600;
+}
+
+.editor .editor__toolbar .button:nth-child(3) {
+  margin-right: 0;
+  background-color: #4BD591;
+}
+
+.editor .editor__content {
+  display: table;
+  padding: 24px 15px 35px 15px;
+  font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+  font-size: 13px;
+}
+
+.editor .editor__element {
+  color: #539EEC;
+}
+
+.editor .editor__value {
+  color: #CE9079;
+}
+
+.editor .editor__comment {
+  color: #6e7884;
+}
+
+.editor .editor__content .line {
+  display: table-row;
+  line-height: 2.3;
+}
+
+.line .line__number {
+  display: table-cell;
+  width: 25px;
+  color: #6F7984;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; 
+}
+
+.line .line__number.line__number--symbol {
+  position: relative;
+  top: 1px;
+  font-size: 18px;
+  line-height: normal;
+}
+
+
+/*********************************************************
+  DONATIONS
+*********************************************************/
+
+.donations .buttons {
+  margin: 30px 0;
+}
+
+.donations .buttons .button {
+  margin-right: 10px;
+}
+
+.donations .buttons .button:last-of-type {
+  margin-right: 0;
+}
+
+
+/*********************************************************
+  FOOTER
+*********************************************************/
+
+.footer {
+  padding: 60px 0 20px 0;
+  font-size: 14px;
+  opacity: 0.5;
+  transition: opacity 200ms linear;
+}
+
+.footer:hover {
+  opacity: 1;
+}
+
+.footer .footer__scroll {
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  transform: rotate(180deg);
+}
