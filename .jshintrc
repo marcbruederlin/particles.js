@@ -20,7 +20,7 @@
   "unused": "vars",
   "strict": true,
   "maxparams": 5,
-  "maxdepth": 4,
-  "maxstatements": 15,
-  "maxcomplexity": 8
+  "maxdepth": 5,
+  "maxstatements": 20,
+  "maxcomplexity": 10
 }

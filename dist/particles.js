@@ -129,8 +129,8 @@ var Particles = (function(window, document) {
         currentBreakpoint = responsiveSettings[breakpoint].breakpoint;
 
         if(responsiveSettings.hasOwnProperty(breakpoint)) {
-          if(responsiveSettings[breakpoint].settings.color) {
-            responsiveSettings[breakpoint].settings.color = _._hex2rgb(responsiveSettings[breakpoint].settings.color);
+          if(responsiveSettings[breakpoint].options.color) {
+            responsiveSettings[breakpoint].options.color = _._hex2rgb(responsiveSettings[breakpoint].options.color);
           }
 
           while(l >= 0) {
@@ -142,7 +142,7 @@ var Particles = (function(window, document) {
           }
 
           _.breakpoints.push(currentBreakpoint);
-          _.breakpointSettings[currentBreakpoint] = responsiveSettings[breakpoint].settings;
+          _.breakpointSettings[currentBreakpoint] = responsiveSettings[breakpoint].options;
         }
       }
 
