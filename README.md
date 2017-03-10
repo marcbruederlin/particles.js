@@ -91,4 +91,4 @@ particles.js is created by [Marc Brüderlin](https://marcbruederlin.com) and rel
 under the [MIT license](https://github.com/marcbruederlin/particles.js/blob/master/LICENSE).
 
 ## Version 1.x
-The source code for particles.js 1.x has been moved to the [v1 branch](/tree/v1).
+The source code for particles.js 1.x has been moved to the [v1 branch](https://github.com/marcbruederlin/particles.js/tree/v1).
