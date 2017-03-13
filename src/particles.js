@@ -2,7 +2,7 @@
  * A lightweight, dependency-free and responsive javascript plugin for particle backgrounds.
  * 
  * @author Marc Bruederlin <hello@marcbruederlin.com>
- * @version 2.0.0
+ * @version 2.0.1
  * @license MIT
  * @see https://github.com/marcbruederlin/particles.js
  */
@@ -35,11 +35,11 @@ var Particles = (function(window, document) {
 
       _.element = null;
       _.context = null;
-      _.activeBreakpoint = null;
+      _.ratio = null;
       _.breakpoints = [];
+      _.activeBreakpoint = null;
       _.breakpointSettings = [];
       _.originalSettings = null;
-      _.windowWidth = 0;
       _.storage = [];
     }
 
@@ -61,10 +61,9 @@ var Particles = (function(window, document) {
 
     _._initializeCanvas();
     _._initializeEvents();
-    _._initializeStorage();
     _._registerBreakpoints();
     _._checkResponsive();
-
+    _._initializeStorage();
     _._animate();
   };
 
@@ -74,7 +73,7 @@ var Particles = (function(window, document) {
    * @private
    */
   Plugin.prototype._initializeCanvas = function() {
-    var _ = this;
+    var _ = this, devicePixelRatio, backingStoreRatio;
 
     if(!_.options.selector) {
       console.warn('particles.js: No selector specified! Check https://github.com/marcbruederlin/particles.js#options');
@@ -83,9 +82,19 @@ var Particles = (function(window, document) {
 
     _.element = document.querySelector(_.options.selector);
     _.context = _.element.getContext('2d');
+    
+    devicePixelRatio = window.devicePixelRatio || 1;
+    backingStoreRatio = _.context.webkitBackingStorePixelRatio || _.context.mozBackingStorePixelRatio || _.context.msBackingStorePixelRatio || 
+                        _.context.oBackingStorePixelRatio || _.context.backingStorePixelRatio || 1;
 
-    _.element.width = window.innerWidth;
-    _.element.height = window.innerHeight;
+    _.ratio = devicePixelRatio / backingStoreRatio;
+
+    _.element.width = window.innerWidth * _.ratio;
+    _.element.height = window.innerHeight * _.ratio;
+    _.element.style.width = '100%';
+    _.element.style.height = '100%';
+
+    _.context.scale(_.ratio, _.ratio);
   };
 
   /**
@@ -110,7 +119,7 @@ var Particles = (function(window, document) {
     _.storage = [];
 
     for(var i = _.options.maxParticles; i--;) {
-      _.storage.push(new Particle(_.element, _.context, _.options));
+      _.storage.push(new Particle(_.context, _.options));
     }
   };
 
@@ -120,8 +129,7 @@ var Particles = (function(window, document) {
    * @private
    */
   Plugin.prototype._registerBreakpoints = function() {
-    var _ = this, breakpoint, currentBreakpoint, l, 
-        responsiveSettings = _.options.responsive || null;
+    var _ = this, breakpoint, currentBreakpoint, l, responsiveSettings = _.options.responsive || null;
 
     if(typeof responsiveSettings === 'object' && responsiveSettings !== null && responsiveSettings.length) {
       for(breakpoint in responsiveSettings) {
@@ -158,9 +166,7 @@ var Particles = (function(window, document) {
    * @private
    */
   Plugin.prototype._checkResponsive = function() {
-    var _ = this,
-        breakpoint, targetBreakpoint = false,
-        windowWidth = window.innerWidth;
+    var _ = this, breakpoint, targetBreakpoint = false, windowWidth = window.innerWidth;
 
     if(_.options.responsive && _.options.responsive.length && _.options.responsive !== null) {
       targetBreakpoint = null;
@@ -207,18 +213,17 @@ var Particles = (function(window, document) {
   Plugin.prototype._resize = function() {
     var _ = this;
 
-    _.element.width = window.innerWidth;
-    _.element.height = window.innerHeight;
+    _.element.width = window.innerWidth * _.ratio;
+    _.element.height = window.innerHeight * _.ratio;
 
-    if(window.innerWidth !== _.windowWidth) {
-      clearTimeout(_.windowDelay);
+    _.context.scale(_.ratio, _.ratio);
 
-      _.windowDelay = window.setTimeout(function() {
-        _.windowWidth = window.innerWidth;
-        _._checkResponsive();
-        _._refresh();
-      }, 50);
-    }
+    clearTimeout(_.windowDelay);
+
+    _.windowDelay = window.setTimeout(function() {
+      _._checkResponsive();
+      _._refresh();
+    }, 50);
   };
 
   /**
@@ -265,16 +270,16 @@ var Particles = (function(window, document) {
       particle.x += particle.vx;
       particle.y += particle.vy;
         
-      if(particle.x + particle.radius > _.element.width) {
+      if(particle.x + particle.radius > window.innerWidth) {
         particle.x = particle.radius;
       } else if(particle.x - particle.radius < 0) {
-        particle.x = _.element.width - particle.radius;
+        particle.x = window.innerWidth - particle.radius;
       }
           
-      if(particle.y + particle.radius > _.element.height) {
+      if(particle.y + particle.radius > window.innerHeight) {
         particle.y = particle.radius;
       } else if(particle.y - particle.radius < 0) {
-        particle.y = _.element.height - particle.radius;
+        particle.y = window.innerHeight - particle.radius;
       }
         
       if(_.options.connectParticles) {
@@ -318,7 +323,9 @@ var Particles = (function(window, document) {
    * @param {object} obj
    */
   Plugin.prototype._extend = function(source, obj) {
-    Object.keys(obj).forEach(function(key) { source[key] = obj[key]; });
+    Object.keys(obj).forEach(function(key) {
+      source[key] = obj[key];
+    });
     
     return source;
   };
@@ -344,20 +351,18 @@ var Particles = (function(window, document) {
    * Represents a single particle.
    * 
    * @constructor
-   * @param {object} element
    * @param {object} context
    * @param {object} options
    * 
    */
-  Particle = function(element, context, options) {
+  Particle = function(context, options) {
     var _ = this;
     
-    _.element = element;
     _.context = context;
     _.options = options;
 
-    _.x = Math.random() * _.element.width;
-    _.y = Math.random() * _.element.height;
+    _.x = Math.random() * window.innerWidth;
+    _.y = Math.random() * window.innerHeight;
     _.vx = Math.random() * _.options.speed * 2 - _.options.speed;
     _.vy = Math.random() * _.options.speed * 2 - _.options.speed;
     _.radius = Math.random() * Math.random() * _.options.sizeVariations;
@@ -375,7 +380,7 @@ var Particles = (function(window, document) {
 
     _.context.fillStyle = 'rgb(' + _.options.color.r + ', ' + _.options.color.g  + ', ' + _.options.color.b + ')';
     _.context.beginPath();
-    _.context.arc(_.x, this.y, _.radius, 0, Math.PI * 2, false);
+    _.context.arc(_.x, _.y, _.radius, 0, Math.PI * 2, false);
     _.context.fill();
   };
 

@@ -10,7 +10,7 @@ particles.js is a lightweight, dependency-free and responsive javascript plugin 
 There are several ways to install particles.js:
 - [Download the latest version](https://github.com/marcbruederlin/particles.js/archive/master.zip)
 - Install with npm: `npm install particlesjs --save`
-- Use the CDN: `https://npmcdn.com/particlesjs@2.0.0/dist/particles.min.js`
+- Use the CDN: `https://npmcdn.com/particlesjs@2.0.1/dist/particles.min.js`
 
 ## Usage
 Include the minified JS in your HTML (right before the closing body tag).
@@ -41,8 +41,6 @@ body {
 .background {
   position: absolute;
   display: block;
-  width: 100%;
-  height: 100%;
   top: 0;
   left: 0;
   z-index: 0;
