@@ -128,6 +128,7 @@ hr {
 
 ::-webkit-scrollbar {
   width: 8px;
+  height: 8px;
 }
  
 ::-webkit-scrollbar-track {
@@ -221,25 +222,25 @@ hr {
   TABLE
 *********************************************************/
 
-table {
+.table {
   text-align: left;
 }
 
-table th {
+.table th {
   font-weight: 900;
   padding-bottom: 10px;
 }
 
-table th:nth-child(3),
-table td:nth-child(3) {
+.table th:nth-child(3),
+.table td:nth-child(3) {
   text-align: center;
 }
 
-table th:nth-child(4) {
+.table th:nth-child(4) {
   width: 40%;
 }
 
-table td {
+.table td {
   padding: 10px 10px 20px 0;
   border-top: 1px solid #2A2F34;
 }
@@ -475,4 +476,63 @@ table td {
   bottom: 20px;
   right: 30px;
   transform: rotate(180deg);
+}
+
+
+/*********************************************************
+  RESPONSIVE
+*********************************************************/
+
+@media(max-width: 425px) {
+  .button.button--large {
+    padding: 30px 35px;
+  }
+
+  hr {
+    margin: 76px auto 61px;
+  }
+
+  .editor {
+    overflow-x: scroll;
+  }
+
+  .header .header__meta {
+    margin: auto;
+    left: 0;
+    right: 0;
+    text-align: center;
+  }
+
+  .donations .buttons .button {
+    margin-right: 5px;
+  }
+}
+
+@media(max-width: 375px) {
+  .button.button--large {
+    padding: 20px 25px;
+  }
+
+  .header .header__introduction .buttons .button:first-of-type {
+    margin-right: 0;
+  }
+
+  .header .header__scroll {
+    display: none;
+    visibility: hidden;
+  }
+}
+
+@media(max-width: 320px) {
+  .button.button--large {
+    padding: 17px 22px;
+  }
+
+  hr {
+    margin: 56px auto 41px;
+  }
+
+  .donations .buttons .button {
+    margin-right: 0;
+  }
 }

@@ -4,6 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, maximum-scale=1.0">
     <title>particles.js – A lightweight, dependency-free and responsive javascript plugin for particle backgrounds.</title>
+    <link rel="icon" type="image/png" href="./favicon/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="./favicon/favicon-16x16.png" sizes="16x16" />
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,900" rel="stylesheet">
     <link href="./css/styles.css" rel="stylesheet" type="text/css">
   </head>
@@ -11,7 +13,7 @@
   <body>
     <header class="header">
       <ul class="header__meta">
-        <li>Current version: <strong>2.0.0</strong></li>
+        <li>Current version: <strong>2.0.1</strong></li>
         <li>License: <strong>MIT</strong></li>
       </ul>
 
@@ -80,7 +82,7 @@
             </div>
             <div class="editor__content">
               <div class="editor__line line">
-                <span class="line__number line__number--symbol">&rarr;</span> https://npmcdn.com/particlesjs@2.0.0/dist/particles.min.js
+                <span class="line__number line__number--symbol">&rarr;</span> https://npmcdn.com/particlesjs@2.0.1/dist/particles.min.js
               </div>
             </div>
           </div>
@@ -177,22 +179,16 @@
                 <span class="line__number">8</span> &nbsp;&nbsp;<span class="editor__element">display</span>: <span class="editor__value">block</span>;
               </div>
               <div class="editor__line line">
-                <span class="line__number">9</span> &nbsp;&nbsp;<span class="editor__element">width</span>: <span class="editor__value">100%</span>;
+                <span class="line__number">9</span> &nbsp;&nbsp;<span class="editor__element">top</span>: 0;
               </div>
               <div class="editor__line line">
-                <span class="line__number">10</span> &nbsp;&nbsp;<span class="editor__element">height</span>: <span class="editor__value">100%</span>;
+                <span class="line__number">10</span> &nbsp;&nbsp;<span class="editor__element">left</span>: 0;
               </div>
               <div class="editor__line line">
-                <span class="line__number">11</span> &nbsp;&nbsp;<span class="editor__element">top</span>: 0;
+                <span class="line__number">11</span> &nbsp;&nbsp;<span class="editor__element">z-index</span>: 0;
               </div>
               <div class="editor__line line">
-                <span class="line__number">12</span> &nbsp;&nbsp;<span class="editor__element">left</span>: 0;
-              </div>
-              <div class="editor__line line">
-                <span class="line__number">13</span> &nbsp;&nbsp;<span class="editor__element">z-index</span>: 0;
-              </div>
-              <div class="editor__line line">
-                <span class="line__number">14</span> }
+                <span class="line__number">12</span> }
               </div>
             </div>
           </div>
@@ -232,66 +228,68 @@
 
           <h2>Options</h2>
 
-          <table>
-            <thead>
-              <tr>
-                <th>Option</th>
-                <th>Type</th>
-                <th>Default</th>
-                <th>Description</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>selector</td>
-                <td>string</td>
-                <td>-</td>
-                <td><em>Required:</em> CSS selector of your canvas element</td>
-              </tr>
-              <tr>
-                <td>maxParticles</td>
-                <td>integer</td>
-                <td>100</td>
-                <td><em>Optional:</em> Maximum amount of particles</td>
-              </tr>
-              <tr>
-                <td>sizeVariations</td>
-                <td>integer</td>
-                <td>3</td>
-                <td><em>Optional:</em> Amount of size variations</td>
-              </tr>
-              <tr>
-                <td>speed</td>
-                <td>integer</td>
-                <td>0.5</td>
-                <td><em>Optional:</em> Movement speed of the particles</td>
-              </tr>
-              <tr>
-                <td>color</td>
-                <td>string</td>
-                <td>#000000</td>
-                <td><em>Optional:</em> Color of particles and connecting lines</td>
-              </tr>
-              <tr>
-                <td>minDistance</td>
-                <td>integer</td>
-                <td>120</td>
-                <td><em>Optional:</em> Distance in px for conntecting lines</td>
-              </tr>
-              <tr>
-                <td>connectParticles</td>
-                <td>boolean</td>
-                <td>false</td>
-                <td><em>Optional:</em> true/false if connecting lines should be drawn</td>
-              </tr>
-              <tr>
-                <td>responsive</td>
-                <td>array</td>
-                <td>null</td>
-                <td><em>Optional:</em> Array of objects containing breakpoints and options</td>
-              </tr>
-            </tbody>
-          </table>
+          <div style="overflow-x:auto;">
+            <table class="table table--responsive">
+              <thead>
+                <tr>
+                  <th>Option</th>
+                  <th>Type</th>
+                  <th>Default</th>
+                  <th>Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>selector</td>
+                  <td>string</td>
+                  <td>-</td>
+                  <td><em>Required:</em> CSS selector of your canvas element</td>
+                </tr>
+                <tr>
+                  <td>maxParticles</td>
+                  <td>integer</td>
+                  <td>100</td>
+                  <td><em>Optional:</em> Maximum amount of particles</td>
+                </tr>
+                <tr>
+                  <td>sizeVariations</td>
+                  <td>integer</td>
+                  <td>3</td>
+                  <td><em>Optional:</em> Amount of size variations</td>
+                </tr>
+                <tr>
+                  <td>speed</td>
+                  <td>integer</td>
+                  <td>0.5</td>
+                  <td><em>Optional:</em> Movement speed of the particles</td>
+                </tr>
+                <tr>
+                  <td>color</td>
+                  <td>string</td>
+                  <td>#000000</td>
+                  <td><em>Optional:</em> Color of particles and connecting lines</td>
+                </tr>
+                <tr>
+                  <td>minDistance</td>
+                  <td>integer</td>
+                  <td>120</td>
+                  <td><em>Optional:</em> Distance in px for conntecting lines</td>
+                </tr>
+                <tr>
+                  <td>connectParticles</td>
+                  <td>boolean</td>
+                  <td>false</td>
+                  <td><em>Optional:</em> true/false if connecting lines should be drawn</td>
+                </tr>
+                <tr>
+                  <td>responsive</td>
+                  <td>array</td>
+                  <td>null</td>
+                  <td><em>Optional:</em> Array of objects containing breakpoints and options</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
 
           <a name="responsive-option"></a>
           <h3>Responsive option</h3>
@@ -433,13 +431,27 @@
       <a class="footer__scroll" href="#"><img src="./img/arrow-down.svg" /></a>
     </footer>
 
-    <script src="https://npmcdn.com/particlesjs@2.0.0/dist/particles.min.js"></script>
+    <script src="https://npmcdn.com/particlesjs@2.0.1/dist/particles.min.js"></script>
     <script>
       window.onload = function() {
         Particles.init({
           selector: '.header__background',
           color: '#75A5B7',
-          connectParticles: true
+          maxParticles: 130,
+          connectParticles: true,
+          responsive: [
+            {
+              breakpoint: 768,
+              options: {
+                maxParticles: 80
+              }
+            }, {
+              breakpoint: 375,
+              options: {
+                maxParticles: 50
+              }
+            }
+          ]
         });
       };
     </script>
