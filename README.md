@@ -1,6 +1,6 @@
 # particles.js
 
-[![Build Status](https://travis-ci.org/marcbruederlin/particles.js.svg?branch=master)](https://travis-ci.org/marcbruederlin/particles.js) [![dependencies Status](https://david-dm.org/marcbruederlin/particles.js/status.svg)](https://david-dm.org/marcbruederlin/particles.js) [![devDependencies Status](https://david-dm.org/marcbruederlin/particles.js/dev-status.svg)](https://david-dm.org/marcbruederlin/particles.js?type=dev) [![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg?v=103)](https://opensource.org/licenses/mit-license.php)   
+[![Build Status](https://travis-ci.org/marcbruederlin/particles.js.svg?branch=master)](https://travis-ci.org/marcbruederlin/particles.js) [![dependencies Status](https://david-dm.org/marcbruederlin/particles.js/status.svg)](https://david-dm.org/marcbruederlin/particles.js) [![devDependencies Status](https://david-dm.org/marcbruederlin/particles.js/dev-status.svg)](https://david-dm.org/marcbruederlin/particles.js?type=dev) [![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg?v=103)](https://opensource.org/licenses/mit-license.php) [![CDNJS version](https://img.shields.io/cdnjs/v/particlesjs.svg)](https://cdnjs.com/libraries/particlesjs)  
 
 particles.js is a lightweight, dependency-free and responsive javascript plugin for particle backgrounds.
 
