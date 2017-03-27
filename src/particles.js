@@ -2,7 +2,7 @@
  * A lightweight, dependency-free and responsive javascript plugin for particle backgrounds.
  * 
  * @author Marc Bruederlin <hello@marcbruederlin.com>
- * @version 2.0.1
+ * @version 2.0.2
  * @license MIT
  * @see https://github.com/marcbruederlin/particles.js
  */
@@ -28,7 +28,7 @@ var Particles = (function(window, document) {
         maxParticles: 100,
         sizeVariations: 3,
         speed: 0.5,
-        color: _._hex2rgb('#000000'),
+        color: '#000000',
         minDistance: 120,
         connectParticles: false
       };
@@ -55,8 +55,8 @@ var Particles = (function(window, document) {
   Plugin.prototype.init = function(settings) {
     var _ = this;
 
-    settings.color = _._hex2rgb(settings.color);
     _.options = _._extend(_.defaults, settings);
+    _.options.color = ((settings.color) ? _._hex2rgb(settings.color) : _._hex2rgb(_.defaults.color));
     _.originalSettings = JSON.parse(JSON.stringify(_.options));
 
     _._initializeCanvas();
