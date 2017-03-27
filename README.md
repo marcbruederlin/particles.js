@@ -1,6 +1,6 @@
 # particles.js
 
-[![Build Status](https://travis-ci.org/marcbruederlin/particles.js.svg?branch=master)](https://travis-ci.org/marcbruederlin/particles.js) [![dependencies Status](https://david-dm.org/marcbruederlin/particles.js/status.svg)](https://david-dm.org/marcbruederlin/particles.js) [![devDependencies Status](https://david-dm.org/marcbruederlin/particles.js/dev-status.svg)](https://david-dm.org/marcbruederlin/particles.js?type=dev) [![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg?v=103)](https://opensource.org/licenses/mit-license.php)   
+[![Build Status](https://travis-ci.org/marcbruederlin/particles.js.svg?branch=master)](https://travis-ci.org/marcbruederlin/particles.js) [![dependencies Status](https://david-dm.org/marcbruederlin/particles.js/status.svg)](https://david-dm.org/marcbruederlin/particles.js) [![devDependencies Status](https://david-dm.org/marcbruederlin/particles.js/dev-status.svg)](https://david-dm.org/marcbruederlin/particles.js?type=dev) [![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg?v=103)](https://opensource.org/licenses/mit-license.php) [![CDNJS version](https://img.shields.io/cdnjs/v/particlesjs.svg)](https://cdnjs.com/libraries/particlesjs)  
 
 particles.js is a lightweight, dependency-free and responsive javascript plugin for particle backgrounds.
 
@@ -10,7 +10,7 @@ particles.js is a lightweight, dependency-free and responsive javascript plugin 
 There are several ways to install particles.js:
 - [Download the latest version](https://github.com/marcbruederlin/particles.js/archive/master.zip)
 - Install with npm: `npm install particlesjs --save`
-- Use the CDN: `https://npmcdn.com/particlesjs@2.0.0/dist/particles.min.js`
+- Use the CDN: `https://npmcdn.com/particlesjs@2.0.1/dist/particles.min.js`
 
 ## Usage
 Include the minified JS in your HTML (right before the closing body tag).
@@ -41,8 +41,6 @@ body {
 .background {
   position: absolute;
   display: block;
-  width: 100%;
-  height: 100%;
   top: 0;
   left: 0;
   z-index: 0;
