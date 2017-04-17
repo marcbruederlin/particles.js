@@ -89,8 +89,12 @@ var Particles = (function(window, document) {
 
     _.ratio = devicePixelRatio / backingStoreRatio;
 
-    _.element.width = window.innerWidth * _.ratio;
-    _.element.height = window.innerHeight * _.ratio;
+    _.element.width = _.element.offsetParent.clientWidth * _.ratio;
+    if (_.element.offsetParent.nodeName == "BODY") {
+      _.element.height = window.innerHeight * _.ratio;
+    } else {
+      _.element.height = _.element.offsetParent.clientHeight * _.ratio;
+    }
     _.element.style.width = '100%';
     _.element.style.height = '100%';
 
@@ -212,9 +216,13 @@ var Particles = (function(window, document) {
    */
   Plugin.prototype._resize = function() {
     var _ = this;
-
-    _.element.width = window.innerWidth * _.ratio;
-    _.element.height = window.innerHeight * _.ratio;
+    
+    _.element.width = _.element.offsetParent.clientWidth * _.ratio;
+    if (_.element.offsetParent.nodeName == "BODY") {
+      _.element.height = window.innerHeight * _.ratio;
+    } else {
+      _.element.height = _.element.offsetParent.clientHeight * _.ratio;
+    }
 
     _.context.scale(_.ratio, _.ratio);
 
@@ -263,23 +271,30 @@ var Particles = (function(window, document) {
    */
   Plugin.prototype._update = function() {
     var _ = this;
-
+    
+    var parentWidth = _.element.offsetParent.clientWidth;
+    if (_.element.offsetParent.nodeName == "BODY") {
+      var parentHeight = window.innerHeight;
+    } else {
+      var parentHeight = _.element.offsetParent.clientHeight;
+    }
+    
     for(var i = _.storage.length; i--;) {
       var particle = _.storage[i];
         
       particle.x += particle.vx;
       particle.y += particle.vy;
-        
-      if(particle.x + particle.radius > window.innerWidth) {
+      
+      if(particle.x + particle.radius > parentWidth) {
         particle.x = particle.radius;
       } else if(particle.x - particle.radius < 0) {
-        particle.x = window.innerWidth - particle.radius;
+        particle.x = parentWidth - particle.radius;
       }
           
-      if(particle.y + particle.radius > window.innerHeight) {
+      if(particle.y + particle.radius > parentHeight) {
         particle.y = particle.radius;
       } else if(particle.y - particle.radius < 0) {
-        particle.y = window.innerHeight - particle.radius;
+        particle.y = parentHeight - particle.radius;
       }
         
       if(_.options.connectParticles) {
@@ -360,9 +375,14 @@ var Particles = (function(window, document) {
     
     _.context = context;
     _.options = options;
-
-    _.x = Math.random() * window.innerWidth;
-    _.y = Math.random() * window.innerHeight;
+    
+    var canvas = document.querySelector(_.options.selector);
+    _.x = Math.random() * canvas.offsetParent.clientWidth;
+    if (canvas.offsetParent.nodeName == "BODY") {
+      _.y = Math.random() * window.innerHeight;
+    } else {
+      _.y = Math.random() * canvas.offsetParent.clientHeight;
+    }
     _.vx = Math.random() * _.options.speed * 2 - _.options.speed;
     _.vy = Math.random() * _.options.speed * 2 - _.options.speed;
     _.radius = Math.random() * Math.random() * _.options.sizeVariations;
