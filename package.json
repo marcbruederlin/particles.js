@@ -21,14 +21,15 @@
     "responsive"
   ],
   "devDependencies": {
-    "gulp": "^3.9.1",
-    "gulp-clean": "^0.3.2",
-    "gulp-jshint": "^2.0.1",
-    "gulp-rename": "^1.2.2",
-    "gulp-uglify": "^2.0.0",
-    "gulp-watch": "^4.3.10",
-    "jshint": "^2.9.3",
-    "jshint-stylish": "^2.2.1",
-    "yargs": "^6.0.0"
+    "gulp": "3.9.1",
+    "gulp-clean": "0.3.2",
+    "gulp-jshint": "2.0.4",
+    "gulp-rename": "1.2.2",
+    "gulp-uglify": "3.0.0",
+    "gulp-util": "3.0.8",
+    "gulp-watch": "4.3.11",
+    "jshint": "2.9.4",
+    "jshint-stylish": "2.2.1",
+    "yargs": "8.0.2"
   }
 }

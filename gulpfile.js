@@ -2,6 +2,7 @@
   'use strict';
   
   var gulp = require('gulp'),
+      gutil = require('gulp-util'),
       argv = require('yargs').argv,
       clean = require('gulp-clean'),
       jshint = require('gulp-jshint'),
@@ -26,7 +27,12 @@
   
   gulp.task('build:compressed', ['build:full'], function() {
     return gulp.src('./src/*')
-      .pipe(uglify({preserveComments: 'license'}))
+      .pipe(uglify({
+        output: {
+          comments: 'some'
+        }
+      }))
+      .on('error', function (err) { gutil.log(gutil.colors.red('[Error]'), err.toString()); })
       .pipe(rename({suffix: '.min'}))
       .pipe(gulp.dest('./dist/'));
   });
