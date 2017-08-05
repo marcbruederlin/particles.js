@@ -66,6 +66,7 @@ Option | Type | Default | Description
 `color` | string | `#000000` | *Optional:* Color of particles and connecting lines
 `minDistance` | integer | `120` | *Optional:* Distance in `px` for connecting lines
 `connectParticles` | boolean | `false` | *Optional:* `true`/`false` if connecting lines should be drawn
+`showParticles` | boolean | `true` | *Optional:* `true`/`false` if particles should be drawn
 `responsive` | array | `null` | *Optional:* Array of objects containing breakpoints and options
 
 Example how to use the [responsive option](https://marcbruederlin.github.io/particles.js/#responsive-option).
@@ -85,7 +86,7 @@ If you’re using particles.js in some interesting way or on a cool site, I’d 
 For any problems or questions don't hesitate to open an issue.<br />
 
 ## License
-particles.js is created by [Marc Brüderlin](https://marcbruederlin.com) and released 
+particles.js is created by [Marc Brüderlin](https://marcbruederlin.com) and released
 under the [MIT license](https://github.com/marcbruederlin/particles.js/blob/master/LICENSE).
 
 ## Version 1.x
