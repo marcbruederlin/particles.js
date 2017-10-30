@@ -12,6 +12,7 @@ var Particles = (function(window, document) {
   'use strict';
 
   var Plugin, Particle = {};
+
   function particleCompareFunc(p1, p2) {
     if (p1.x < p2.x) {
       return -1;
@@ -22,8 +23,9 @@ var Particles = (function(window, document) {
     } else if (p1.y > p2.y) {
       return 1;
     }
+
     return 0;
-  };
+  }
 
   /**
    * Represents the plugin.
@@ -107,7 +109,7 @@ var Particles = (function(window, document) {
     _.ratio = devicePixelRatio / backingStoreRatio;
 
     _.element.width = _.element.offsetParent.clientWidth * _.ratio;
-    if (_.element.offsetParent.nodeName == "BODY") {
+    if (_.element.offsetParent.nodeName === 'BODY') {
       _.element.height = window.innerHeight * _.ratio;
     } else {
       _.element.height = _.element.offsetParent.clientHeight * _.ratio;
@@ -235,7 +237,8 @@ var Particles = (function(window, document) {
     var _ = this;
 
     _.element.width = _.element.offsetParent.clientWidth * _.ratio;
-    if (_.element.offsetParent.nodeName == "BODY") {
+
+    if (_.element.offsetParent.nodeName === 'BODY') {
       _.element.height = window.innerHeight * _.ratio;
     } else {
       _.element.height = _.element.offsetParent.clientHeight * _.ratio;
@@ -270,7 +273,10 @@ var Particles = (function(window, document) {
    */
   Plugin.prototype.resumeAnimation = function() {
     var _ = this;
-    !_._animation && _._animate();
+
+    if (!_._animation) {
+      _._animate();
+    }
   };
 
   /**
@@ -280,7 +286,10 @@ var Particles = (function(window, document) {
    */
   Plugin.prototype.pauseAnimation = function() {
     var _ = this;
-    if (!_._animation) return
+
+    if (!_._animation) {
+      return;
+    }
 
     if (_.usingPolyfill) {
       window.clearTimeout(_._animation);
@@ -288,6 +297,7 @@ var Particles = (function(window, document) {
       var cancelAnimationFrame = window.cancelAnimationFrame || window.webkitCancelAnimationFrame || window.mozCancelAnimationFrame;
       cancelAnimationFrame(_._animation);
     }
+
     _._animation = null;
   };
 
@@ -297,24 +307,28 @@ var Particles = (function(window, document) {
    * @private
    */
   Plugin.prototype._draw = function() {
-    var _ = this;
-    var element = _.element;
-    var parentWidth = element.offsetParent.clientWidth;
-    var parentHeight = element.offsetParent.clientHeight;
-    var showParticles = _.options.showParticles;
-    var storage = _.storage;
+    var _ = this,
+        element = _.element,
+        parentWidth = element.offsetParent.clientWidth,
+        parentHeight = element.offsetParent.clientHeight,
+        showParticles = _.options.showParticles,
+        storage = _.storage;
 
-    if (element.offsetParent.nodeName == "BODY") {
+    if (element.offsetParent.nodeName === 'BODY') {
       parentHeight = window.innerHeight;
     }
 
     _.context.clearRect(0, 0, element.width, element.height);
-
     _.context.beginPath();
     _.context.fillStyle = 'rgb(' + _.options.color.r + ', ' + _.options.color.g  + ', ' + _.options.color.b + ')';
+
     for(var i = storage.length; i--;) {
       var particle = storage[i];
-      showParticles && particle._draw();
+      
+      if (showParticles) {
+        particle._draw();
+      }
+
       particle._updateCoordinates(parentWidth, parentHeight);
     }
     _.context.fill();
@@ -331,29 +345,33 @@ var Particles = (function(window, document) {
    * @private
    */
   Plugin.prototype._updateEdges = function() {
-    var _ = this;
-
-    var minDistance = _.options.minDistance;
-    var color = _.options.color;
-    var sqrt = Math.sqrt;
-    var abs = Math.abs;
-
-    var storage = _.storage;
-    var storageLength = storage.length;
-
-    var strokeStyleColor = 'rgba(' + color.r + ',' + color.g + ',' + color.b + ',';
+    var _ = this,
+        minDistance = _.options.minDistance,
+        color = _.options.color,
+        sqrt = Math.sqrt,
+        abs = Math.abs,
+        
+        storage = _.storage,
+        storageLength = storage.length,
+        
+        strokeStyleColor = 'rgba(' + color.r + ',' + color.g + ',' + color.b + ',';
 
     for(var i = 0; i < storageLength; i++) {
       var p1 = storage[i];
 
       for(var j = i + 1; j < storageLength; j++) {
-        var p2 = storage[j];
+        var p2 = storage[j],
+            distance, r = p1.x - p2.x, dy = p1.y - p2.y;
 
-        var distance, r = p1.x - p2.x, dy = p1.y - p2.y;
         distance = sqrt(r * r + dy * dy);
-        if (abs(r) > minDistance) break;
 
-        distance <= minDistance && _._drawEdge(p1, p2, strokeStyleColor + (1.2 - distance/minDistance) + ')');
+        if (abs(r) > minDistance) {
+          break;
+        }
+
+        if (distance <= minDistance) {
+          _._drawEdge(p1, p2, strokeStyleColor + (1.2 - distance/minDistance) + ')');
+        }
       }
     }
   };
@@ -367,8 +385,8 @@ var Particles = (function(window, document) {
    * @param strokeStyle
    */
   Plugin.prototype._drawEdge = function(p1, p2, strokeStyle) {
-    var _ = this;
-    var context = _.context;
+    var _ = this,
+        context = _.context;
 
     context.beginPath();
     context.strokeStyle = strokeStyle;
@@ -419,20 +437,22 @@ var Particles = (function(window, document) {
    *
    */
   Particle = function(context, options) {
-    var _ = this;
-    var random = Math.random;
-    var speed = options.speed;
+    var _ = this,
+        random = Math.random,
+        speed = options.speed;
 
     _.context = context;
     _.options = options;
 
     var canvas = document.querySelector(options.selector);
     _.x = random() * canvas.offsetParent.clientWidth;
-    if (canvas.offsetParent.nodeName == "BODY") {
+
+    if (canvas.offsetParent.nodeName === 'BODY') {
       _.y = random() * window.innerHeight;
     } else {
       _.y = random() * canvas.offsetParent.clientHeight;
     }
+
     _.vx = random() * speed * 2 - speed;
     _.vy = random() * speed * 2 - speed;
     _.radius = random() * random() * options.sizeVariations;
@@ -463,11 +483,11 @@ var Particles = (function(window, document) {
    * @param parentHeight
    */
   Particle.prototype._updateCoordinates = function(parentWidth, parentHeight) {
-    var _ = this;
-
-    var x = _.x + this.vx;
-    var y = _.y + this.vy;
-    var radius = _.radius;
+    var _ = this,
+    
+        x = _.x + this.vx,
+        y = _.y + this.vy,
+        radius = _.radius;
 
     if(x + radius > parentWidth) {
       x = radius;
@@ -481,8 +501,8 @@ var Particles = (function(window, document) {
       y = parentHeight - radius;
     }
 
-    _.x = x
-    _.y = y
+    _.x = x;
+    _.y = y;
   };
 
   /**
@@ -491,11 +511,15 @@ var Particles = (function(window, document) {
    * @return {function}
    */
   window.requestAnimFrame = (function() {
-    var _ = this;
-    var requestAnimationFrame = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame;
-    if (requestAnimationFrame) return requestAnimationFrame;
+    var _ = this,
+    requestAnimationFrame = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame;
+    
+    if (requestAnimationFrame) {
+      return requestAnimationFrame;
+    }
 
-    _._usingPolyfill = true
+    _._usingPolyfill = true;
+
     return function(callback) {
       return window.setTimeout(callback, 1000 / 60);
     };

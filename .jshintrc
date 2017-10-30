@@ -21,6 +21,6 @@
   "strict": true,
   "maxparams": 5,
   "maxdepth": 5,
-  "maxstatements": 20,
+  "maxstatements": 30,
   "maxcomplexity": 10
 }
