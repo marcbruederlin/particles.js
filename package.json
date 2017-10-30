@@ -1,6 +1,6 @@
 {
   "name": "particlesjs",
-  "version": "2.0.2",
+  "version": "2.1.0",
   "description": "A lightweight, dependency-free and responsive javascript plugin for particle backgrounds.",
   "main": "dist/particles.min.js",
   "repository": {
@@ -28,8 +28,8 @@
     "gulp-uglify": "3.0.0",
     "gulp-util": "3.0.8",
     "gulp-watch": "4.3.11",
-    "jshint": "2.9.4",
+    "jshint": "2.9.5",
     "jshint-stylish": "2.2.1",
-    "yargs": "8.0.2"
+    "yargs": "10.0.3"
   }
 }

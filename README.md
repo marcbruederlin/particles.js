@@ -10,7 +10,7 @@ particles.js is a lightweight, dependency-free and responsive javascript plugin 
 There are several ways to install particles.js:
 - [Download the latest version](https://github.com/marcbruederlin/particles.js/archive/master.zip)
 - Install with npm: `npm install particlesjs --save`
-- Use the CDN: `https://npmcdn.com/particlesjs@2.0.2/dist/particles.min.js`
+- Use the CDN: `https://npmcdn.com/particlesjs@2.1.0/dist/particles.min.js`
 
 ## Usage
 Include the minified JS in your HTML (right before the closing body tag).
@@ -66,9 +66,16 @@ Option | Type | Default | Description
 `color` | string | `#000000` | *Optional:* Color of particles and connecting lines
 `minDistance` | integer | `120` | *Optional:* Distance in `px` for connecting lines
 `connectParticles` | boolean | `false` | *Optional:* `true`/`false` if connecting lines should be drawn
+`showParticles` | boolean | `true` | *Optional:* `true`/`false` if particles should be drawn
 `responsive` | array | `null` | *Optional:* Array of objects containing breakpoints and options
 
 Example how to use the [responsive option](https://marcbruederlin.github.io/particles.js/#responsive-option).
+
+## Methods
+Method | Description
+------ | -----------
+`pauseAnimation` | Pauses/stops the particle animation
+`resumeAnimation` | Continues the particle animation
 
 ## Browser Support
 IE9+ and all modern browsers.
@@ -85,7 +92,7 @@ If you’re using particles.js in some interesting way or on a cool site, I’d 
 For any problems or questions don't hesitate to open an issue.<br />
 
 ## License
-particles.js is created by [Marc Brüderlin](https://marcbruederlin.com) and released 
+particles.js is created by [Marc Brüderlin](https://marcbruederlin.com) and released
 under the [MIT license](https://github.com/marcbruederlin/particles.js/blob/master/LICENSE).
 
 ## Version 1.x

@@ -1,8 +1,8 @@
 /*!
  * A lightweight, dependency-free and responsive javascript plugin for particle backgrounds.
- * 
+ *
  * @author Marc Bruederlin <hello@marcbruederlin.com>
- * @version 2.0.2
+ * @version 2.1.0
  * @license MIT
  * @see https://github.com/marcbruederlin/particles.js
  */
@@ -10,12 +10,26 @@
 /* exported Particles */
 var Particles = (function(window, document) {
   'use strict';
-  
+
   var Plugin, Particle = {};
+
+  function particleCompareFunc(p1, p2) {
+    if (p1.x < p2.x) {
+      return -1;
+    } else if (p1.x > p2.x) {
+      return 1;
+    } else if (p1.y < p2.y) {
+      return -1;
+    } else if (p1.y > p2.y) {
+      return 1;
+    }
+
+    return 0;
+  }
 
   /**
    * Represents the plugin.
-   * 
+   *
    * @constructor
    */
   Plugin = (function() {
@@ -27,10 +41,11 @@ var Particles = (function(window, document) {
         selector: null,
         maxParticles: 100,
         sizeVariations: 3,
+        showParticles: true,
         speed: 0.5,
         color: '#000000',
         minDistance: 120,
-        connectParticles: false
+        connectParticles: false,
       };
 
       _.element = null;
@@ -41,6 +56,7 @@ var Particles = (function(window, document) {
       _.breakpointSettings = [];
       _.originalSettings = null;
       _.storage = [];
+      _.usingPolyfill = false;
     }
 
     return Plugin;
@@ -48,7 +64,7 @@ var Particles = (function(window, document) {
 
   /**
    * Initializes the plugin with user settings.
-   * 
+   *
    * @public
    * @param {object} settings
    */
@@ -59,17 +75,20 @@ var Particles = (function(window, document) {
     _.options.color = ((settings.color) ? _._hex2rgb(settings.color) : _._hex2rgb(_.defaults.color));
     _.originalSettings = JSON.parse(JSON.stringify(_.options));
 
+    _._animate = _._animate.bind(_);
+
     _._initializeCanvas();
     _._initializeEvents();
     _._registerBreakpoints();
     _._checkResponsive();
     _._initializeStorage();
     _._animate();
+    return _;
   };
 
   /**
    * Setup the canvas element.
-   * 
+   *
    * @private
    */
   Plugin.prototype._initializeCanvas = function() {
@@ -82,15 +101,15 @@ var Particles = (function(window, document) {
 
     _.element = document.querySelector(_.options.selector);
     _.context = _.element.getContext('2d');
-    
+
     devicePixelRatio = window.devicePixelRatio || 1;
-    backingStoreRatio = _.context.webkitBackingStorePixelRatio || _.context.mozBackingStorePixelRatio || _.context.msBackingStorePixelRatio || 
+    backingStoreRatio = _.context.webkitBackingStorePixelRatio || _.context.mozBackingStorePixelRatio || _.context.msBackingStorePixelRatio ||
                         _.context.oBackingStorePixelRatio || _.context.backingStorePixelRatio || 1;
 
     _.ratio = devicePixelRatio / backingStoreRatio;
 
     _.element.width = _.element.offsetParent.clientWidth * _.ratio;
-    if (_.element.offsetParent.nodeName == "BODY") {
+    if (_.element.offsetParent.nodeName === 'BODY') {
       _.element.height = window.innerHeight * _.ratio;
     } else {
       _.element.height = _.element.offsetParent.clientHeight * _.ratio;
@@ -103,7 +122,7 @@ var Particles = (function(window, document) {
 
   /**
    * Register event listeners.
-   * 
+   *
    * @private
    */
   Plugin.prototype._initializeEvents = function() {
@@ -114,7 +133,7 @@ var Particles = (function(window, document) {
 
   /**
    * Initialize the particle storage.
-   * 
+   *
    * @private
    */
   Plugin.prototype._initializeStorage = function() {
@@ -129,7 +148,7 @@ var Particles = (function(window, document) {
 
   /**
    * Register responsive breakpoints if the user declared some.
-   * 
+   *
    * @private
    */
   Plugin.prototype._registerBreakpoints = function() {
@@ -166,7 +185,7 @@ var Particles = (function(window, document) {
 
   /**
    * Check if a breakpoint is active and load the breakpoints options.
-   * 
+   *
    * @private
    */
   Plugin.prototype._checkResponsive = function() {
@@ -190,7 +209,7 @@ var Particles = (function(window, document) {
         if(_.activeBreakpoint !== null) {
           _.activeBreakpoint = null;
           targetBreakpoint = null;
-          
+
           _.options = _._extend(_.options, _.originalSettings);
         }
       }
@@ -199,26 +218,27 @@ var Particles = (function(window, document) {
 
   /**
    * Rebuild the storage and update the canvas.
-   * 
+   *
    * @private
    */
   Plugin.prototype._refresh = function() {
     var _ = this;
 
     _._initializeStorage();
-    _._update();
+    _._draw();
   };
 
   /**
    * Kick off various things on window resize.
-   * 
+   *
    * @private
    */
   Plugin.prototype._resize = function() {
     var _ = this;
-    
+
     _.element.width = _.element.offsetParent.clientWidth * _.ratio;
-    if (_.element.offsetParent.nodeName == "BODY") {
+
+    if (_.element.offsetParent.nodeName === 'BODY') {
       _.element.height = window.innerHeight * _.ratio;
     } else {
       _.element.height = _.element.offsetParent.clientHeight * _.ratio;
@@ -236,103 +256,149 @@ var Particles = (function(window, document) {
 
   /**
    * Animates the plugin particles by calling the draw method.
-   * 
+   *
    * @private
    */
   Plugin.prototype._animate = function() {
     var _ = this;
 
     _._draw();
-    window.requestAnimFrame(_._animate.bind(_));
+    _._animation = window.requestAnimFrame(_._animate);
+  };
+
+  /**
+   * Animates particles by calling _animate if there exists no _animation
+   *
+   * @public
+   */
+  Plugin.prototype.resumeAnimation = function() {
+    var _ = this;
+
+    if (!_._animation) {
+      _._animate();
+    }
+  };
+
+  /**
+   * Pauses/stops animation
+   *
+   * @public
+   */
+  Plugin.prototype.pauseAnimation = function() {
+    var _ = this;
+
+    if (!_._animation) {
+      return;
+    }
+
+    if (_.usingPolyfill) {
+      window.clearTimeout(_._animation);
+    } else {
+      var cancelAnimationFrame = window.cancelAnimationFrame || window.webkitCancelAnimationFrame || window.mozCancelAnimationFrame;
+      cancelAnimationFrame(_._animation);
+    }
+
+    _._animation = null;
   };
 
   /**
    * Draws the plugin particles.
-   * 
+   *
    * @private
    */
   Plugin.prototype._draw = function() {
-    var _ = this;
+    var _ = this,
+        element = _.element,
+        parentWidth = element.offsetParent.clientWidth,
+        parentHeight = element.offsetParent.clientHeight,
+        showParticles = _.options.showParticles,
+        storage = _.storage;
 
-    _.context.clearRect(0, 0, _.element.width, _.element.height);
-    
-    for(var i = _.storage.length; i--;) {
-      var particle = _.storage[i];
-      particle._draw();
+    if (element.offsetParent.nodeName === 'BODY') {
+      parentHeight = window.innerHeight;
     }
-    
-    _._update();
+
+    _.context.clearRect(0, 0, element.width, element.height);
+    _.context.beginPath();
+    _.context.fillStyle = 'rgb(' + _.options.color.r + ', ' + _.options.color.g  + ', ' + _.options.color.b + ')';
+
+    for(var i = storage.length; i--;) {
+      var particle = storage[i];
+      
+      if (showParticles) {
+        particle._draw();
+      }
+
+      particle._updateCoordinates(parentWidth, parentHeight);
+    }
+    _.context.fill();
+
+    if (_.options.connectParticles) {
+      storage.sort(particleCompareFunc);
+      _._updateEdges();
+    }
   };
 
   /**
-   * Updates the particle movements.
-   * 
+   * Updates the edges
+   *
    * @private
    */
-  Plugin.prototype._update = function() {
-    var _ = this;
-    
-    var parentWidth = _.element.offsetParent.clientWidth;
-    if (_.element.offsetParent.nodeName == "BODY") {
-      var parentHeight = window.innerHeight;
-    } else {
-      var parentHeight = _.element.offsetParent.clientHeight;
-    }
-    
-    for(var i = _.storage.length; i--;) {
-      var particle = _.storage[i];
+  Plugin.prototype._updateEdges = function() {
+    var _ = this,
+        minDistance = _.options.minDistance,
+        color = _.options.color,
+        sqrt = Math.sqrt,
+        abs = Math.abs,
         
-      particle.x += particle.vx;
-      particle.y += particle.vy;
-      
-      if(particle.x + particle.radius > parentWidth) {
-        particle.x = particle.radius;
-      } else if(particle.x - particle.radius < 0) {
-        particle.x = parentWidth - particle.radius;
-      }
-          
-      if(particle.y + particle.radius > parentHeight) {
-        particle.y = particle.radius;
-      } else if(particle.y - particle.radius < 0) {
-        particle.y = parentHeight - particle.radius;
-      }
+        storage = _.storage,
+        storageLength = storage.length,
         
-      if(_.options.connectParticles) {
-        for(var j = i + 1; j < _.storage.length; j++) {
-          var particle2 = _.storage[j];
-        
-          _._calculateDistance(particle, particle2);
+        strokeStyleColor = 'rgba(' + color.r + ',' + color.g + ',' + color.b + ',';
+
+    for(var i = 0; i < storageLength; i++) {
+      var p1 = storage[i];
+
+      for(var j = i + 1; j < storageLength; j++) {
+        var p2 = storage[j],
+            distance, r = p1.x - p2.x, dy = p1.y - p2.y;
+
+        distance = sqrt(r * r + dy * dy);
+
+        if (abs(r) > minDistance) {
+          break;
+        }
+
+        if (distance <= minDistance) {
+          _._drawEdge(p1, p2, strokeStyleColor + (1.2 - distance/minDistance) + ')');
         }
       }
     }
   };
 
   /**
-   * Calculates the distance between two particles in pixels.
-   * 
+   * Draws an edge between two points
+   *
    * @private
    * @param {Particle} p1
    * @param {Particle} p2
+   * @param strokeStyle
    */
-  Plugin.prototype._calculateDistance = function(p1, p2) {
-    var _ = this;
+  Plugin.prototype._drawEdge = function(p1, p2, strokeStyle) {
+    var _ = this,
+        context = _.context;
 
-    var n, r = p1.x - p2.x, dy = p1.y - p2.y;  
-        n = Math.sqrt(r * r + dy * dy);
-      
-      if(n <= _.options.minDistance) {
-        _.context.beginPath();
-        _.context.strokeStyle = 'rgba(' + _.options.color.r + ', ' + _.options.color.g + ', ' + _.options.color.b + ', ' + (1.2 - n / _.options.minDistance) + ')';
-        _.context.moveTo(p1.x, p1.y);
-        _.context.lineTo(p2.x, p2.y);
-        _.context.stroke();
-        _.context.closePath();
-      }
+    context.beginPath();
+    context.strokeStyle = strokeStyle;
+    context.moveTo(p1.x, p1.y);
+    context.lineTo(p2.x, p2.y);
+    context.stroke();
+    context.closePath();
   };
 
   /**
    * Merges the keys of two objects.
-   * 
+   *
    * @private
    * @param {object} source
    * @param {object} obj
@@ -341,20 +407,20 @@ var Particles = (function(window, document) {
     Object.keys(obj).forEach(function(key) {
       source[key] = obj[key];
     });
-    
+
     return source;
   };
 
   /**
    * Converts a hex string to a rgb object.
-   * 
+   *
    * @private
    * @param {string} hex
    * @return {object}
    */
   Plugin.prototype._hex2rgb = function(hex) {
     var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-    
+
     return result ? {
       r: parseInt(result[1], 16),
       g: parseInt(result[2], 16),
@@ -364,56 +430,99 @@ var Particles = (function(window, document) {
 
   /**
    * Represents a single particle.
-   * 
+   *
    * @constructor
    * @param {object} context
    * @param {object} options
-   * 
+   *
    */
   Particle = function(context, options) {
-    var _ = this;
-    
+    var _ = this,
+        random = Math.random,
+        speed = options.speed;
+
     _.context = context;
     _.options = options;
-    
-    var canvas = document.querySelector(_.options.selector);
-    _.x = Math.random() * canvas.offsetParent.clientWidth;
-    if (canvas.offsetParent.nodeName == "BODY") {
-      _.y = Math.random() * window.innerHeight;
+
+    var canvas = document.querySelector(options.selector);
+    _.x = random() * canvas.offsetParent.clientWidth;
+
+    if (canvas.offsetParent.nodeName === 'BODY') {
+      _.y = random() * window.innerHeight;
     } else {
-      _.y = Math.random() * canvas.offsetParent.clientHeight;
+      _.y = random() * canvas.offsetParent.clientHeight;
     }
-    _.vx = Math.random() * _.options.speed * 2 - _.options.speed;
-    _.vy = Math.random() * _.options.speed * 2 - _.options.speed;
-    _.radius = Math.random() * Math.random() * _.options.sizeVariations;
+
+    _.vx = random() * speed * 2 - speed;
+    _.vy = random() * speed * 2 - speed;
+    _.radius = random() * random() * options.sizeVariations;
 
     _._draw();
   };
 
   /**
    * The particles draw function (renders the circle).
-   * 
+   *
    * @private
    */
   Particle.prototype._draw = function() {
     var _ = this;
 
-    _.context.fillStyle = 'rgb(' + _.options.color.r + ', ' + _.options.color.g  + ', ' + _.options.color.b + ')';
-    _.context.beginPath();
-    _.context.arc(_.x, _.y, _.radius, 0, Math.PI * 2, false);
-    _.context.fill();
+    _.context.save();
+    _.context.translate(_.x, _.y);
+    _.context.moveTo(0, 0);
+    _.context.arc(0, 0, _.radius, 0, Math.PI * 2, false);
+    _.context.restore();
+  };
+
+  /**
+   * This updates the particles coordinates
+   *
+   * @private
+   * @param parentWidth
+   * @param parentHeight
+   */
+  Particle.prototype._updateCoordinates = function(parentWidth, parentHeight) {
+    var _ = this,
+    
+        x = _.x + this.vx,
+        y = _.y + this.vy,
+        radius = _.radius;
+
+    if(x + radius > parentWidth) {
+      x = radius;
+    } else if(x - radius < 0) {
+      x = parentWidth - radius;
+    }
+
+    if(y + radius > parentHeight) {
+      y = radius;
+    } else if(y - radius < 0) {
+      y = parentHeight - radius;
+    }
+
+    _.x = x;
+    _.y = y;
   };
 
   /**
    * A polyfill for requestAnimFrame.
-   * 
+   *
    * @return {function}
    */
   window.requestAnimFrame = (function() {
-    return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame ||
-      function(callback) {
-        window.setTimeout(callback, 1000 / 60);
-      };
+    var _ = this,
+    requestAnimationFrame = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame;
+    
+    if (requestAnimationFrame) {
+      return requestAnimationFrame;
+    }
+
+    _._usingPolyfill = true;
+
+    return function(callback) {
+      return window.setTimeout(callback, 1000 / 60);
+    };
   })();
 
   return new Plugin();
