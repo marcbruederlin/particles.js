@@ -7,8 +7,7 @@
       clean = require('gulp-clean'),
       jshint = require('gulp-jshint'),
       uglify = require('gulp-uglify'),
-      rename = require('gulp-rename'),
-      rev = require('gulp-rev');
+      rename = require('gulp-rename');
 
   gulp.task('jshint', function() {
     return gulp.src('./src/*')
@@ -35,7 +34,6 @@
       }))
       .on('error', function (err) { gutil.log(gutil.colors.red('[Error]'), err.toString()); })
       .pipe(rename({suffix: '.min'}))
-      .pipe(rev())
       .pipe(gulp.dest('./dist/'));
   });
 

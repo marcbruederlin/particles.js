@@ -25,7 +25,6 @@
     "gulp-clean": "0.3.2",
     "gulp-jshint": "2.0.4",
     "gulp-rename": "1.2.2",
-    "gulp-rev": "^8.0.0",
     "gulp-uglify": "3.0.0",
     "gulp-util": "3.0.8",
     "gulp-watch": "4.3.11",
