@@ -1,6 +1,12 @@
 # particles.js
 
-[![Build Status](https://travis-ci.org/marcbruederlin/particles.js.svg?branch=master)](https://travis-ci.org/marcbruederlin/particles.js) [![dependencies Status](https://david-dm.org/marcbruederlin/particles.js/status.svg)](https://david-dm.org/marcbruederlin/particles.js) [![devDependencies Status](https://david-dm.org/marcbruederlin/particles.js/dev-status.svg)](https://david-dm.org/marcbruederlin/particles.js?type=dev) [![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg?v=103)](https://opensource.org/licenses/mit-license.php) [![CDNJS version](https://img.shields.io/cdnjs/v/particlesjs.svg)](https://cdnjs.com/libraries/particlesjs)  
+[![Github file size](https://img.shields.io/github/size/marcbruederlin/particles.js/dist/particles.min.js.svg)](https://github.com/marcbruederlin/particles.js/blob/master/dist/particles.min.js)
+[![Travis](https://img.shields.io/travis/marcbruederlin/particles.js.svg)](https://travis-ci.org/marcbruederlin/particles.js)
+[![David](https://img.shields.io/david/marcbruederlin/particles.js.svg)](https://david-dm.org/marcbruederlin/particles.js)
+[![David](https://img.shields.io/david/dev/marcbruederlin/particles.js.svg)](https://david-dm.org/marcbruederlin/particles.js?type=dev)
+[![npm](https://img.shields.io/npm/v/particlesjs.svg)](https://www.npmjs.com/package/particlesjs)
+[![CDNJS](https://img.shields.io/cdnjs/v/particlesjs.svg)](https://cdnjs.com/libraries/particlesjs)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/marcbruederlin/particles.js/master/LICENSE)
 
 particles.js is a lightweight, dependency-free and responsive javascript plugin for particle backgrounds.
 
@@ -10,7 +16,7 @@ particles.js is a lightweight, dependency-free and responsive javascript plugin 
 There are several ways to install particles.js:
 - [Download the latest version](https://github.com/marcbruederlin/particles.js/archive/master.zip)
 - Install with npm: `npm install particlesjs --save`
-- Use the CDN: `https://npmcdn.com/particlesjs@2.1.0/dist/particles.min.js`
+- Use the CDN: `https://cdnjs.cloudflare.com/ajax/libs/particlesjs/2.1.0/particles.min.js`
 
 ## Usage
 Include the minified JS in your HTML (right before the closing body tag).
@@ -66,7 +72,6 @@ Option | Type | Default | Description
 `color` | string | `#000000` | *Optional:* Color of particles and connecting lines
 `minDistance` | integer | `120` | *Optional:* Distance in `px` for connecting lines
 `connectParticles` | boolean | `false` | *Optional:* `true`/`false` if connecting lines should be drawn
-`showParticles` | boolean | `true` | *Optional:* `true`/`false` if particles should be drawn
 `responsive` | array | `null` | *Optional:* Array of objects containing breakpoints and options
 
 Example how to use the [responsive option](https://marcbruederlin.github.io/particles.js/#responsive-option).
@@ -76,6 +81,8 @@ Method | Description
 ------ | -----------
 `pauseAnimation` | Pauses/stops the particle animation
 `resumeAnimation` | Continues the particle animation
+
+Example how to use the [public methods](https://marcbruederlin.github.io/particles.js/#use-methods).
 
 ## Browser Support
 IE9+ and all modern browsers.
