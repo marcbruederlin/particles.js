@@ -10,7 +10,7 @@ particles.js is a lightweight, dependency-free and responsive javascript plugin 
 There are several ways to install particles.js:
 - [Download the latest version](https://github.com/marcbruederlin/particles.js/archive/master.zip)
 - Install with npm: `npm install particlesjs --save`
-- Use the CDN: `https://npmcdn.com/particlesjs@2.0.2/dist/particles.min.js`
+- Use the CDN: `https://npmcdn.com/particlesjs@2.1.0/dist/particles.min.js`
 
 ## Usage
 Include the minified JS in your HTML (right before the closing body tag).
@@ -70,6 +70,12 @@ Option | Type | Default | Description
 `responsive` | array | `null` | *Optional:* Array of objects containing breakpoints and options
 
 Example how to use the [responsive option](https://marcbruederlin.github.io/particles.js/#responsive-option).
+
+## Methods
+Method | Description
+------ | -----------
+`pauseAnimation` | Pauses/stops the particle animation
+`resumeAnimation` | Continues the particle animation
 
 ## Browser Support
 IE9+ and all modern browsers.
