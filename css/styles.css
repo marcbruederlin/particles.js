@@ -223,6 +223,7 @@ hr {
 *********************************************************/
 
 .table {
+  width: 100%;
   text-align: left;
 }
 
@@ -402,6 +403,10 @@ hr {
   padding: 24px 15px 35px 15px;
   font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
   font-size: 13px;
+}
+
+.editor .editor__variable {
+  color: rgb(193, 83, 236);
 }
 
 .editor .editor__element {

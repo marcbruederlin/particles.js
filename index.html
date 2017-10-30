@@ -23,7 +23,7 @@
   <body>
     <header class="header">
       <ul class="header__meta">
-        <li>Current version: <strong>2.0.2</strong></li>
+        <li>Current version: <strong>2.1.0</strong></li>
         <li>License: <strong>MIT</strong></li>
       </ul>
 
@@ -92,7 +92,7 @@
             </div>
             <div class="editor__content">
               <div class="editor__line line">
-                <span class="line__number line__number--symbol">&rarr;</span> https://npmcdn.com/particlesjs@2.0.2/dist/particles.min.js
+                <span class="line__number line__number--symbol">&rarr;</span> https://npmcdn.com/particlesjs@2.1.0/dist/particles.min.js
               </div>
             </div>
           </div>
@@ -408,6 +408,90 @@
         </div>
 
         <hr />
+        
+        <div class="methods">
+          <a name="methods"></a>
+        
+          <h2>Methods</h2>
+      
+          <div style="overflow-x:auto;">
+            <table class="table table--responsive">
+              <thead>
+                <tr>
+                  <th>Method</th>
+                  <th>Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>pauseAnimation</td>
+                  <td>Pauses/stops the particle animation</td>
+                </tr>
+                <tr>
+                  <td>resumeAnimation</td>
+                  <td>Continues the particle animation</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <a name="use-methods"></a>
+          <h3>Use the public methods</h3>
+
+          <div class="editor">
+            <div class="editor__toolbar">
+              <div class="button"></div>
+              <div class="button"></div>
+              <div class="button"></div>
+            </div>
+            <div class="editor__content">
+              <div class="editor__line line">
+                <span class="line__number">1</span> &hellip;
+              </div>
+              <div class="editor__line line">
+                <span class="line__number">2</span> <span class="editor__variable">var</span> particles = Particles.<span class="editor__element">init</span>({
+              </div>
+              <div class="editor__line line">
+                <span class="line__number">3</span> &nbsp;&nbsp;<span class="editor__comment">// options</span>
+              </div>
+              <div class="editor__line line">
+                <span class="line__number">4</span> });
+              </div>
+              <div class="editor__line line">
+                <span class="line__number">5</span>
+              </div>
+              <div class="editor__line line">
+                <span class="line__number">6</span> <span class="editor__comment">// E.g. gets called on a button click</span>
+              </div>
+              <div class="editor__line line">
+                <span class="line__number">7</span> <span class="editor__variable">function</span>&nbsp;<span class="editor__element">pause</span>() {
+              </div>
+              <div class="editor__line line">
+                <span class="line__number">8</span> &nbsp;&nbsp;particles.<span class="editor__element">pauseAnimation</span>();
+              </div>
+              <div class="editor__line line">
+                <span class="line__number">9</span> }
+              </div>
+              <div class="editor__line line">
+                <span class="line__number">10</span>
+              </div>
+              <div class="editor__line line">
+                <span class="line__number">11</span> <span class="editor__comment">// E.g. gets called on a button click</span>
+              </div>
+              <div class="editor__line line">
+                <span class="line__number">12</span> <span class="editor__variable">function</span>&nbsp;<span class="editor__element">resume</span>() {
+              </div>
+              <div class="editor__line line">
+                <span class="line__number">13</span> &nbsp;&nbsp;particles.<span class="editor__element">resumeAnimation</span>();
+              </div>
+              <div class="editor__line line">
+                <span class="line__number">14</span> }
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <hr />
 
         <div class="browser-support">
           <a name="browser-support"></a>
@@ -441,7 +525,7 @@
       <a class="footer__scroll" href="#"><img src="./img/arrow-down.svg" /></a>
     </footer>
 
-    <script src="https://npmcdn.com/particlesjs@2.0.2/dist/particles.min.js"></script>
+    <script src="https://npmcdn.com/particlesjs@2.1.0/dist/particles.min.js"></script>
     <script>
       window.onload = function() {
         Particles.init({
