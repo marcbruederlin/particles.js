@@ -1,6 +1,6 @@
 {
   "name": "particlesjs",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "A lightweight, dependency-free and responsive javascript plugin for particle backgrounds.",
   "main": "dist/particles.min.js",
   "repository": {
