@@ -8,22 +8,12 @@
     <link rel="icon" type="image/png" href="./favicon/favicon-16x16.png" sizes="16x16" />
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,900" rel="stylesheet">
     <link href="./css/styles.css" rel="stylesheet" type="text/css">
-    
-    <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-      ga('create', 'UA-25750134-3', 'auto');
-      ga('send', 'pageview');
-    </script>
   </head>
 
   <body>
     <header class="header">
       <ul class="header__meta">
-        <li>Current version: <strong>2.1.0</strong></li>
+        <li>Current version: <strong>2.2.1</strong></li>
         <li>License: <strong>MIT</strong></li>
       </ul>
 
@@ -92,7 +82,8 @@
             </div>
             <div class="editor__content">
               <div class="editor__line line">
-                <span class="line__number line__number--symbol">&rarr;</span> https://cdnjs.cloudflare.com/ajax/libs/particlesjs/2.1.0/particles.min.js
+                <span class="line__number line__number--symbol">&rarr;</span>
+                <span>https://cdnjs.cloudflare.com/ajax/libs/particlesjs/2.2.1/particles.min.js</span>
               </div>
             </div>
           </div>
@@ -168,10 +159,10 @@
                 <span class="line__number">1</span> html, body {
               </div>
               <div class="editor__line line">
-                <span class="line__number">2</span> &nbsp;&nbsp;<span class="editor__element">margin</span>: 0;
+                <span class="line__number">2</span> &nbsp;&nbsp;<span class="editor__element">margin</span>:&nbsp;0;
               </div>
               <div class="editor__line line">
-                <span class="line__number">3</span> &nbsp;&nbsp;<span class="editor__element">padding</span>: 0;
+                <span class="line__number">3</span> &nbsp;&nbsp;<span class="editor__element">padding</span>:&nbsp;0;
               </div>
               <div class="editor__line line">
                 <span class="line__number">4</span> }
@@ -183,19 +174,19 @@
                 <span class="line__number">6</span> .background {
               </div>
               <div class="editor__line line">
-                <span class="line__number">7</span> &nbsp;&nbsp;<span class="editor__element">position</span>: <span class="editor__value">absolute</span>;
+                <span class="line__number">7</span> &nbsp;&nbsp;<span class="editor__element">position</span>: <span class="editor__value">&nbsp;absolute</span>;
               </div>
               <div class="editor__line line">
-                <span class="line__number">8</span> &nbsp;&nbsp;<span class="editor__element">display</span>: <span class="editor__value">block</span>;
+                <span class="line__number">8</span> &nbsp;&nbsp;<span class="editor__element">display</span>: <span class="editor__value">&nbsp;block</span>;
               </div>
               <div class="editor__line line">
-                <span class="line__number">9</span> &nbsp;&nbsp;<span class="editor__element">top</span>: 0;
+                <span class="line__number">9</span> &nbsp;&nbsp;<span class="editor__element">top</span>:&nbsp;0;
               </div>
               <div class="editor__line line">
-                <span class="line__number">10</span> &nbsp;&nbsp;<span class="editor__element">left</span>: 0;
+                <span class="line__number">10</span> &nbsp;&nbsp;<span class="editor__element">left</span>:&nbsp;0;
               </div>
               <div class="editor__line line">
-                <span class="line__number">11</span> &nbsp;&nbsp;<span class="editor__element">z-index</span>: 0;
+                <span class="line__number">11</span> &nbsp;&nbsp;<span class="editor__element">z-index</span>:&nbsp;0;
               </div>
               <div class="editor__line line">
                 <span class="line__number">12</span> }
@@ -219,7 +210,7 @@
                 <span class="line__number">2</span> &nbsp;&nbsp;Particles.<span class="editor__element">init</span>({
               </div>
               <div class="editor__line line">
-                <span class="line__number">3</span> &nbsp;&nbsp;&nbsp;&nbsp;selector: <span class="editor__value">'.background'</span>
+                <span class="line__number">3</span> &nbsp;&nbsp;&nbsp;&nbsp;selector:&nbsp;<span class="editor__value">'.background'</span>
               </div>
               <div class="editor__line line">
                 <span class="line__number">4</span> &nbsp;&nbsp;});
@@ -275,9 +266,9 @@
                 </tr>
                 <tr>
                   <td>color</td>
-                  <td>string</td>
+                  <td>string or string[]</td>
                   <td>#000000</td>
-                  <td><em>Optional:</em> Color of particles and connecting lines</td>
+                  <td><em>Optional:</em> Color(s) of the particles and connecting lines</td>
                 </tr>
                 <tr>
                   <td>minDistance</td>
@@ -323,10 +314,10 @@
                 <span class="line__number">3</span> &nbsp;&nbsp;<span class="editor__comment">// normal options</span>
               </div>
               <div class="editor__line line">
-                <span class="line__number">4</span> &nbsp;&nbsp;selector: <span class="editor__value">'.background'</span>,
+                <span class="line__number">4</span> &nbsp;&nbsp;selector:&nbsp;<span class="editor__value">'.background'</span>,
               </div>
               <div class="editor__line line">
-                <span class="line__number">5</span> &nbsp;&nbsp;maxParticles: <span class="editor__value">450</span>,
+                <span class="line__number">5</span> &nbsp;&nbsp;maxParticles:&nbsp;<span class="editor__value">450</span>,
               </div>
               <div class="editor__line line">
                 <span class="line__number">6</span>
@@ -341,19 +332,19 @@
                 <span class="line__number">9</span> &nbsp;&nbsp;&nbsp;&nbsp;{
               </div>
               <div class="editor__line line">
-                <span class="line__number">10</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;breakpoint: <span class="editor__value">768</span>,
+                <span class="line__number">10</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;breakpoint:&nbsp;<span class="editor__value">768</span>,
               </div>
               <div class="editor__line line">
                 <span class="line__number">11</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;options: {
               </div>
               <div class="editor__line line">
-                <span class="line__number">12</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;maxParticles: <span class="editor__value">200</span>,
+                <span class="line__number">12</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;maxParticles:&nbsp;<span class="editor__value">200</span>,
               </div>
               <div class="editor__line line">
-                <span class="line__number">13</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;color: <span class="editor__value">'#48F2E3'</span>,
+                <span class="line__number">13</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;color:&nbsp;<span class="editor__value">'#48F2E3'</span>,
               </div>
               <div class="editor__line line">
-                <span class="line__number">14</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;connectParticles: <span class="editor__value">false</span>
+                <span class="line__number">14</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;connectParticles:&nbsp;<span class="editor__value">false</span>
               </div>
               <div class="editor__line line">
                 <span class="line__number">15</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
@@ -362,16 +353,16 @@
                 <span class="line__number">16</span> &nbsp;&nbsp;&nbsp;&nbsp;}, {
               </div>
               <div class="editor__line line">
-                <span class="line__number">17</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;breakpoint: <span class="editor__value">425</span>,
+                <span class="line__number">17</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;breakpoint:&nbsp;<span class="editor__value">425</span>,
               </div>
               <div class="editor__line line">
                 <span class="line__number">18</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;options: {
               </div>
               <div class="editor__line line">
-                <span class="line__number">19</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;maxParticles: <span class="editor__value">100</span>,
+                <span class="line__number">19</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;maxParticles:&nbsp;<span class="editor__value">100</span>,
               </div>
               <div class="editor__line line">
-                <span class="line__number">20</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;connectParticles: <span class="editor__value">true</span>
+                <span class="line__number">20</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;connectParticles:&nbsp;<span class="editor__value">true</span>
               </div>
               <div class="editor__line line">
                 <span class="line__number">21</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
@@ -380,13 +371,13 @@
                 <span class="line__number">22</span> &nbsp;&nbsp;&nbsp;&nbsp;}, {
               </div>
               <div class="editor__line line">
-                <span class="line__number">23</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;breakpoint: <span class="editor__value">320</span>,
+                <span class="line__number">23</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;breakpoint:&nbsp;<span class="editor__value">320</span>,
               </div>
               <div class="editor__line line">
                 <span class="line__number">24</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;options: {
               </div>
               <div class="editor__line line">
-                <span class="line__number">25</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;maxParticles: <span class="editor__value">0</span>&nbsp;<span class="editor__comment">// disables particles.js</span>
+                <span class="line__number">25</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;maxParticles:&nbsp;<span class="editor__value">0</span>&nbsp;<span class="editor__comment">// disables particles.js</span>
               </div>
               <div class="editor__line line">
                 <span class="line__number">26</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
@@ -449,7 +440,7 @@
                 <span class="line__number">1</span> &hellip;
               </div>
               <div class="editor__line line">
-                <span class="line__number">2</span> <span class="editor__variable">var</span> particles = Particles.<span class="editor__element">init</span>({
+                <span class="line__number">2</span> <span class="editor__variable">var</span>&nbsp;particles&nbsp;=&nbsp;Particles.<span class="editor__element">init</span>({
               </div>
               <div class="editor__line line">
                 <span class="line__number">3</span> &nbsp;&nbsp;<span class="editor__comment">// options</span>
@@ -498,6 +489,18 @@
 
           <h2>Browser support</h2>
           <p>particles.js supports all major browsers including IE9+.</p>
+        </div>
+
+        <hr />
+
+        <div class="examples">
+          <a name="examples"></a>
+
+          <h2>Examples</h2>
+          <a target="_blank" href="https://jsfiddle.net/3fn13L7d/13/">Fullscreen background</a><br />
+          <a target="_blank" href="https://jsfiddle.net/m97g98sx/14/">In a fixed width and height container</a><br />
+          <a target="_blank" href="https://jsfiddle.net/m1ffsa4q/5/">Multiple colors</a><br />
+          <a target="_blank" href="https://jsfiddle.net/bg6sbfj2/9/">Use breakpoints</a>
         </div>
 
         <hr />
