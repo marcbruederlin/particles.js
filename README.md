@@ -69,9 +69,9 @@ Option | Type | Default | Description
 `maxParticles` | integer | `100` | *Optional:* Maximum amount of particles
 `sizeVariations` | integer | `3` | *Optional:* Amount of size variations
 `speed` | integer | `0.5` | *Optional:* Movement speed of the particles
-`color` | string or string[] | `#000000` | *Optional:* Color of particles and connecting lines
+`color` | string or string[] | `#000000` | *Optional:* Color(s) of the particles and connecting lines
 `minDistance` | integer | `120` | *Optional:* Distance in `px` for connecting lines
-`connectParticles` | boolean | `false` | *Optional:* `true`/`false` if connecting lines should be drawn
+`connectParticles` | boolean | `false` | *Optional:* `true`/`false` if connecting lines should be drawn or not
 `responsive` | array | `null` | *Optional:* Array of objects containing breakpoints and options
 
 Example how to use the [responsive option](https://marcbruederlin.github.io/particles.js/#responsive-option).
@@ -86,6 +86,9 @@ Example how to use the [public methods](https://marcbruederlin.github.io/particl
 
 ## Browser Support
 IE9+ and all modern browsers.
+
+## Examples
+See [various examples](https://marcbruederlin.github.io/particles.js/#examples) how you can use particles.js.
 
 ## Build
 To compile the distribution files by yourself, make sure that you have node.js and gulp installed, then:
