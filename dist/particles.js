@@ -2,7 +2,7 @@
  * A lightweight, dependency-free and responsive javascript plugin for particle backgrounds.
  *
  * @author Marc Bruederlin <hello@marcbruederlin.com>
- * @version 2.1.0
+ * @version 2.2.0
  * @license MIT
  * @see https://github.com/marcbruederlin/particles.js
  */
@@ -72,7 +72,6 @@ var Particles = (function(window, document) {
     var _ = this;
 
     _.options = _._extend(_.defaults, settings);
-    _.options.color = ((settings.color) ? _._hex2rgb(settings.color) : _._hex2rgb(_.defaults.color));
     _.originalSettings = JSON.parse(JSON.stringify(_.options));
 
     _._animate = _._animate.bind(_);
@@ -83,6 +82,7 @@ var Particles = (function(window, document) {
     _._checkResponsive();
     _._initializeStorage();
     _._animate();
+
     return _;
   };
 
@@ -267,7 +267,7 @@ var Particles = (function(window, document) {
   };
 
   /**
-   * Animates particles by calling _animate if there exists no _animation
+   * Restarts the particles animation by calling _animate.
    *
    * @public
    */
@@ -280,7 +280,7 @@ var Particles = (function(window, document) {
   };
 
   /**
-   * Pauses/stops animation
+   * Pauses/stops the particle animation.
    *
    * @public
    */
@@ -320,7 +320,6 @@ var Particles = (function(window, document) {
 
     _.context.clearRect(0, 0, element.width, element.height);
     _.context.beginPath();
-    _.context.fillStyle = 'rgb(' + _.options.color.r + ', ' + _.options.color.g  + ', ' + _.options.color.b + ')';
 
     for(var i = storage.length; i--;) {
       var particle = storage[i];
@@ -331,7 +330,6 @@ var Particles = (function(window, document) {
 
       particle._updateCoordinates(parentWidth, parentHeight);
     }
-    _.context.fill();
 
     if (_.options.connectParticles) {
       storage.sort(particleCompareFunc);
@@ -340,21 +338,17 @@ var Particles = (function(window, document) {
   };
 
   /**
-   * Updates the edges
+   * Updates the edges.
    *
    * @private
    */
   Plugin.prototype._updateEdges = function() {
     var _ = this,
         minDistance = _.options.minDistance,
-        color = _.options.color,
         sqrt = Math.sqrt,
         abs = Math.abs,
-        
         storage = _.storage,
-        storageLength = storage.length,
-        
-        strokeStyleColor = 'rgba(' + color.r + ',' + color.g + ',' + color.b + ',';
+        storageLength = storage.length;
 
     for(var i = 0; i < storageLength; i++) {
       var p1 = storage[i];
@@ -370,30 +364,37 @@ var Particles = (function(window, document) {
         }
 
         if (distance <= minDistance) {
-          _._drawEdge(p1, p2, strokeStyleColor + (1.2 - distance/minDistance) + ')');
+          _._drawEdge(p1, p2, (1.2 - distance/minDistance));
         }
       }
     }
   };
 
   /**
-   * Draws an edge between two points
+   * Draws an edge between two points.
    *
    * @private
    * @param {Particle} p1
    * @param {Particle} p2
-   * @param strokeStyle
+   * @param {number} opacity
    */
-  Plugin.prototype._drawEdge = function(p1, p2, strokeStyle) {
+  Plugin.prototype._drawEdge = function(p1, p2, opacity) {
     var _ = this,
-        context = _.context;
+        gradient = _.context.createLinearGradient(p1.x, p1.y, p2.x, p2.y);
 
-    context.beginPath();
-    context.strokeStyle = strokeStyle;
-    context.moveTo(p1.x, p1.y);
-    context.lineTo(p2.x, p2.y);
-    context.stroke();
-    context.closePath();
+    var color1 = this._hex2rgb(p1.color);
+    var color2 = this._hex2rgb(p2.color);
+
+    gradient.addColorStop(0, 'rgba(' + color1.r + ',' + color1.g + ',' + color1.b + ',' + opacity);
+    gradient.addColorStop(1, 'rgba(' + color2.r + ',' + color2.g + ',' + color2.b + ',' + opacity);
+
+    _.context.beginPath();
+    _.context.strokeStyle = gradient;
+    _.context.moveTo(p1.x, p1.y);
+    _.context.lineTo(p2.x, p2.y);
+    _.context.stroke();
+    _.context.fill();
+    _.context.closePath();
   };
 
   /**
@@ -434,12 +435,12 @@ var Particles = (function(window, document) {
    * @constructor
    * @param {object} context
    * @param {object} options
-   *
    */
   Particle = function(context, options) {
     var _ = this,
         random = Math.random,
-        speed = options.speed;
+        speed = options.speed,
+        color = (options.color instanceof Array) ? options.color[Math.floor(Math.random() * options.color.length)] : options.color;
 
     _.context = context;
     _.options = options;
@@ -456,6 +457,7 @@ var Particles = (function(window, document) {
     _.vx = random() * speed * 2 - speed;
     _.vy = random() * speed * 2 - speed;
     _.radius = random() * random() * options.sizeVariations;
+    _.color = color;
 
     _._draw();
   };
@@ -471,12 +473,15 @@ var Particles = (function(window, document) {
     _.context.save();
     _.context.translate(_.x, _.y);
     _.context.moveTo(0, 0);
+    _.context.beginPath();
     _.context.arc(0, 0, _.radius, 0, Math.PI * 2, false);
+    _.context.fillStyle = _.color;
+    _.context.fill();
     _.context.restore();
   };
 
   /**
-   * This updates the particles coordinates
+   * This updates the particles coordinates.
    *
    * @private
    * @param parentWidth
