@@ -69,7 +69,7 @@ Option | Type | Default | Description
 `maxParticles` | integer | `100` | *Optional:* Maximum amount of particles
 `sizeVariations` | integer | `3` | *Optional:* Amount of size variations
 `speed` | integer | `0.5` | *Optional:* Movement speed of the particles
-`color` | string | `#000000` | *Optional:* Color of particles and connecting lines
+`color` | string or string[] | `#000000` | *Optional:* Color of particles and connecting lines
 `minDistance` | integer | `120` | *Optional:* Distance in `px` for connecting lines
 `connectParticles` | boolean | `false` | *Optional:* `true`/`false` if connecting lines should be drawn
 `responsive` | array | `null` | *Optional:* Array of objects containing breakpoints and options
