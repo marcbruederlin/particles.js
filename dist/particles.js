@@ -160,10 +160,6 @@ var Particles = (function(window, document) {
         currentBreakpoint = responsiveSettings[breakpoint].breakpoint;
 
         if(responsiveSettings.hasOwnProperty(breakpoint)) {
-          if(responsiveSettings[breakpoint].options.color) {
-            responsiveSettings[breakpoint].options.color = _._hex2rgb(responsiveSettings[breakpoint].options.color);
-          }
-
           while(l >= 0) {
             if(_.breakpoints[l] && _.breakpoints[l] === currentBreakpoint) {
               _.breakpoints.splice(l, 1);
