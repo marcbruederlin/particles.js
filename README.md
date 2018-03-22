@@ -81,6 +81,7 @@ Method | Description
 ------ | -----------
 `pauseAnimation` | Pauses/stops the particle animation
 `resumeAnimation` | Continues the particle animation
+`destroy` | Destroys the plugin
 
 Example how to use the [public methods](https://marcbruederlin.github.io/particles.js/#use-methods).
 

@@ -63,7 +63,7 @@ var Particles = (function(window, document) {
   }());
 
   /**
-   * Initializes the plugin with user settings.
+   * Public mehtod to initialize the plugin with user settings.
    *
    * @public
    * @param {object} settings
@@ -84,6 +84,22 @@ var Particles = (function(window, document) {
     _._animate();
 
     return _;
+  };
+
+  /**
+   * Public method to destroy the plugin.
+   * 
+   * @public
+   */
+  Plugin.prototype.destroy = function() {
+    var _ = this;
+
+    _.storage = [];
+    _.element.remove();
+
+    window.removeEventListener('resize', _.listener, false);
+    window.clearTimeout(_._animation);
+    cancelAnimationFrame(_._animation);
   };
 
   /**
@@ -128,7 +144,8 @@ var Particles = (function(window, document) {
   Plugin.prototype._initializeEvents = function() {
     var _ = this;
 
-    window.addEventListener('resize', _._resize.bind(_), false);
+    _.listener = function() { _._resize(); }.bind(this);
+    window.addEventListener('resize', _.listener, false);
   };
 
   /**
