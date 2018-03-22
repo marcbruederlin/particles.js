@@ -381,8 +381,8 @@ var Particles = (function(window, document) {
     var color1 = this._hex2rgb(p1.color);
     var color2 = this._hex2rgb(p2.color);
 
-    gradient.addColorStop(0, 'rgba(' + color1.r + ',' + color1.g + ',' + color1.b + ',' + opacity);
-    gradient.addColorStop(1, 'rgba(' + color2.r + ',' + color2.g + ',' + color2.b + ',' + opacity);
+    gradient.addColorStop(0, 'rgba(' + color1.r + ',' + color1.g + ',' + color1.b + ',' + opacity + ')');
+    gradient.addColorStop(1, 'rgba(' + color2.r + ',' + color2.g + ',' + color2.b + ',' + opacity + ')');
 
     _.context.beginPath();
     _.context.strokeStyle = gradient;
