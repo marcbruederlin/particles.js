@@ -16,7 +16,7 @@ particles.js is a lightweight, dependency-free and responsive javascript plugin 
 There are several ways to install particles.js:
 - [Download the latest version](https://github.com/marcbruederlin/particles.js/archive/master.zip)
 - Install with npm: `npm install particlesjs --save`
-- Use the CDN: `https://cdnjs.cloudflare.com/ajax/libs/particlesjs/2.2.1/particles.min.js`
+- Use the CDN: `https://cdnjs.cloudflare.com/ajax/libs/particlesjs/2.2.2/particles.min.js`
 
 ## Usage
 Include the minified JS in your HTML (right before the closing body tag).
