@@ -20,6 +20,10 @@
     "background",
     "responsive"
   ],
+  "scripts": {
+    "build": "node ./node_modules/gulp/bin/gulp build",
+    "build:watch": "node ./node_modules/gulp/bin/gulp build --watch"
+  },
   "devDependencies": {
     "gulp": "3.9.1",
     "gulp-clean": "0.4.0",
