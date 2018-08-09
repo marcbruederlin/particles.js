@@ -2,7 +2,7 @@
  * A lightweight, dependency-free and responsive javascript plugin for particle backgrounds.
  *
  * @author Marc Bruederlin <hello@marcbruederlin.com>
- * @version 2.2.2
+ * @version 2.2.3
  * @license MIT
  * @see https://github.com/marcbruederlin/particles.js
  */
