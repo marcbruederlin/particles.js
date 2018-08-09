@@ -2,7 +2,7 @@
  * A lightweight, dependency-free and responsive javascript plugin for particle backgrounds.
  *
  * @author Marc Bruederlin <hello@marcbruederlin.com>
- * @version 2.2.2
+ * @version 2.2.3
  * @license MIT
  * @see https://github.com/marcbruederlin/particles.js
  */
@@ -88,7 +88,7 @@ var Particles = (function(window, document) {
 
   /**
    * Public method to destroy the plugin.
-   * 
+   *
    * @public
    */
   Plugin.prototype.destroy = function() {
@@ -123,12 +123,12 @@ var Particles = (function(window, document) {
                         _.context.oBackingStorePixelRatio || _.context.backingStorePixelRatio || 1;
 
     _.ratio = devicePixelRatio / backingStoreRatio;
+    _.element.width = (_.element.offsetParent) ? _.element.offsetParent.clientWidth * _.ratio : _.element.clientWidth * _.ratio;
 
-    _.element.width = _.element.offsetParent.clientWidth * _.ratio;
-    if (_.element.offsetParent.nodeName === 'BODY') {
+    if (_.element.offsetParent && _.element.offsetParent.nodeName === 'BODY') {
       _.element.height = window.innerHeight * _.ratio;
     } else {
-      _.element.height = _.element.offsetParent.clientHeight * _.ratio;
+      _.element.height = (_.element.offsetParent) ? _.element.offsetParent.clientHeight * _.ratio : _.element.clientHeight * _.ratio;
     }
     _.element.style.width = '100%';
     _.element.style.height = '100%';
@@ -249,12 +249,12 @@ var Particles = (function(window, document) {
   Plugin.prototype._resize = function() {
     var _ = this;
 
-    _.element.width = _.element.offsetParent.clientWidth * _.ratio;
+    _.element.width = (_.element.offsetParent) ? _.element.offsetParent.clientWidth * _.ratio : _.element.clientWidth * _.ratio;
 
-    if (_.element.offsetParent.nodeName === 'BODY') {
+    if (_.element.offsetParent && _.element.offsetParent.nodeName === 'BODY') {
       _.element.height = window.innerHeight * _.ratio;
     } else {
-      _.element.height = _.element.offsetParent.clientHeight * _.ratio;
+      _.element.height = (_.element.offsetParent) ? _.element.offsetParent.clientHeight * _.ratio : _.element.clientHeight * _.ratio;
     }
 
     _.context.scale(_.ratio, _.ratio);
@@ -322,12 +322,12 @@ var Particles = (function(window, document) {
   Plugin.prototype._draw = function() {
     var _ = this,
         element = _.element,
-        parentWidth = element.offsetParent.clientWidth,
-        parentHeight = element.offsetParent.clientHeight,
+        parentWidth = (element.offsetParent) ? element.offsetParent.clientWidth : element.clientWidth,
+        parentHeight = (element.offsetParent) ? element.offsetParent.clientHeight :  element.clientHeight,
         showParticles = _.options.showParticles,
         storage = _.storage;
 
-    if (element.offsetParent.nodeName === 'BODY') {
+    if (element.offsetParent && element.offsetParent.nodeName === 'BODY') {
       parentHeight = window.innerHeight;
     }
 
@@ -336,7 +336,7 @@ var Particles = (function(window, document) {
 
     for(var i = storage.length; i--;) {
       var particle = storage[i];
-      
+
       if (showParticles) {
         particle._draw();
       }
@@ -459,12 +459,12 @@ var Particles = (function(window, document) {
     _.options = options;
 
     var canvas = document.querySelector(options.selector);
-    _.x = random() * canvas.offsetParent.clientWidth;
+    _.x = (canvas.offsetParent) ? random() * canvas.offsetParent.clientWidth : random() * canvas.clientWidth;
 
-    if (canvas.offsetParent.nodeName === 'BODY') {
+    if (canvas.offsetParent && canvas.offsetParent.nodeName === 'BODY') {
       _.y = random() * window.innerHeight;
     } else {
-      _.y = random() * canvas.offsetParent.clientHeight;
+      _.y = (canvas.offsetParent) ? random() * canvas.offsetParent.clientHeight : random() * canvas.clientHeight;
     }
 
     _.vx = random() * speed * 2 - speed;
@@ -502,7 +502,7 @@ var Particles = (function(window, document) {
    */
   Particle.prototype._updateCoordinates = function(parentWidth, parentHeight) {
     var _ = this,
-    
+
         x = _.x + this.vx,
         y = _.y + this.vy,
         radius = _.radius;
@@ -531,7 +531,7 @@ var Particles = (function(window, document) {
   window.requestAnimFrame = (function() {
     var _ = this,
     requestAnimationFrame = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame;
-    
+
     if (requestAnimationFrame) {
       return requestAnimationFrame;
     }
