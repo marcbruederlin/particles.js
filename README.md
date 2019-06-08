@@ -1,5 +1,4 @@
 # particles.js
-
 [![Github file size](https://img.shields.io/github/size/marcbruederlin/particles.js/dist/particles.min.js.svg)](https://github.com/marcbruederlin/particles.js/blob/master/dist/particles.min.js)
 [![Travis](https://img.shields.io/travis/marcbruederlin/particles.js.svg)](https://travis-ci.org/marcbruederlin/particles.js)
 [![David](https://img.shields.io/david/marcbruederlin/particles.js.svg)](https://david-dm.org/marcbruederlin/particles.js)
@@ -13,20 +12,15 @@ particles.js is a lightweight, dependency-free and responsive javascript plugin 
 [<img src="http://i.giphy.com/CPEar2kArhFny.gif"/>](https://marcbruederlin.github.io/particles.js/)
 
 ## Installation
-
 There are several ways to install particles.js:
-
 - [Download the latest version](https://github.com/marcbruederlin/particles.js/archive/master.zip)
 - Install with npm: `npm install particlesjs --save`
 - Use the CDN: `https://cdnjs.cloudflare.com/ajax/libs/particlesjs/2.2.3/particles.min.js`
 
 ## Usage
-
 Include the minified JS in your HTML (right before the closing body tag).
-
 ```html
 <body>
-  …
   <script src="path/to/particles.min.js"></script>
 </body>
 ```
@@ -35,14 +29,12 @@ Add a canvas element to your markup (it should be the last element)
 
 ```html
 <body>
-  …
   <canvas class="background"></canvas>
   <script src="path/to/particles.min.js"></script>
 </body>
 ```
 
 Add a few styles to your css.
-
 ```css
 html,
 body {
@@ -63,11 +55,13 @@ Initialize the plugin on the `window.onload` event.
 
 ```js
 // Particles is bound to the Window Object = window.Particles
-window.onload = () => this.Particles.init({ selector: '.background' });
+window.onload = () => {
+  this.Particles.init({ 
+    selector: '.background' 
+  });
+};
 ```
-
 ## Options
-
 | Option             | Type               | Default   | Description                                                           |
 | ------------------ | ------------------ | --------- | --------------------------------------------------------------------- |
 | `selector`         | string             | -         | _Required:_ The CSS selector of your canvas element                   |
@@ -82,7 +76,6 @@ window.onload = () => this.Particles.init({ selector: '.background' });
 Example how to use the [responsive option](https://marcbruederlin.github.io/particles.js/#responsive-option).
 
 ## Methods
-
 | Method            | Description                         |
 | ----------------- | ----------------------------------- |
 | `pauseAnimation`  | Pauses/stops the particle animation |
@@ -92,15 +85,12 @@ Example how to use the [responsive option](https://marcbruederlin.github.io/part
 Example how to use the [public methods](https://marcbruederlin.github.io/particles.js/#use-methods).
 
 ## Browser Support
-
 IE9+ and all modern browsers.
 
 ## Examples
-
 See [various examples](https://marcbruederlin.github.io/particles.js/#examples) how you can use particles.js.
 
 ## Build
-
 To compile the distribution files by yourself, make sure that you have node.js and gulp installed, then:
 
 - Clone the repository: `https://github.com/marcbruederlin/particles.js.git`
@@ -109,15 +99,12 @@ To compile the distribution files by yourself, make sure that you have node.js a
 - Run the gulp build task `gulp build` to regenerate the `dist` folder. <br/> You can also run `gulp build --watch` to watch for file changes and automatically rebuild the files.
 
 ## Using particles.js?
-
 If you’re using particles.js in some interesting way or on a cool site, I’d be very grateful if you <a href="mailto:hello@marcbruederlin.com?subject=Hey, I'm using particles.js">shoot me</a> a link to it.<br />
 For any problems or questions don't hesitate to open an issue.<br />
 
 ## License
-
 particles.js is created by [Marc Brüderlin](https://marcbruederlin.com) and released
 under the [MIT license](https://github.com/marcbruederlin/particles.js/blob/master/LICENSE).
 
 ## Version 1.x
-
 The source code for particles.js 1.x has been moved to the [v1 branch](https://github.com/marcbruederlin/particles.js/tree/v1).
